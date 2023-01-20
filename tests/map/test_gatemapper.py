@@ -22,6 +22,16 @@ def test_gatemapper():
         == old_radar.fields["reflectivity"]["data"][4, 4]
     )
 
+    # Add a new field to old_radar, ensure new radar gets field
+    new_radar.fields["reflectivity_new"] = new_radar.fields["reflectivity"]
+    gate_mapper = pyart.map.GateMapper(new_radar, old_radar)
+    mapped_radar = gate_mapper.mapped_radar(["reflectivity_new"])
+
+    assert gate_mapper[4, 4] == (26, 11)
+    assert (
+            mapped_radar.fields["reflectivity_new"]["data"][26, 11]
+            == new_radar.fields["reflectivity_new"]["data"][4, 4]
+    )
 
 def test_gatemapper_gatefilter():
     # Make fake radar with target

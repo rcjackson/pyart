@@ -222,6 +222,14 @@ class GateMapper:
 
         src_fields = {}
         for field in field_list:
+            if not field in list(mapped_radar.fields.keys()):
+                mapped_radar.fields[field] = {}
+                for field_attr in list(self.src_radar.fields[field].keys()):
+                    if field_attr == "data":
+                        mapped_radar.fields[field][field_attr] = np.ma.zeros(
+                            (mapped_radar.nrays, mapped_radar.ngates))
+                    else:
+                        mapped_radar.fields[field][field_attr] = self.src_radar.fields[field][field_attr]
             mapped_radar.fields[field]["data"] = np.ma.masked_where(
                 True, mapped_radar.fields[field]["data"]
             )
