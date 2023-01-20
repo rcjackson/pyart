@@ -1,0 +1,14 @@
+
+:orphan:
+
+.. _sphx_glr_examples_correct_sg_execution_times:
+
+Computation times
+=================
+**01:26.754** total execution time for **examples_correct** files:
+
++--------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_correct_plot_dealias.py` (``plot_dealias.py``)         | 01:14.643 | 0.0 MB |
++--------------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_examples_correct_plot_attenuation.py` (``plot_attenuation.py``) | 00:12.112 | 0.0 MB |
++--------------------------------------------------------------------------------+-----------+--------+

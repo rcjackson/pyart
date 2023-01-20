@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>The Py-ART Radar object and indexing &#8212; Py-ART 1.8.0.post981 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyart-theme.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/doc_shared.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Blog" href="../blog.html" />
+    <link rel="prev" title="Masking Data With Py-ART Gatefilters" href="masking_data_with_gatefilters.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-JJEG3CV376');
+                </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../blog/atom.xml"
+  title="PyART Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+  <nav class="navbar navbar-dark navbar-expand-lg bg-arm fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">Py-ART</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../userguide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../API/index.html">
+  API Reference Manual
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples/index.html">
+  Example Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../notebook-gallery.html">
+  Notebook Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../changelog.html">
+  Changelog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/ARM-DOE/pyart" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/Py_ART" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  </nav>
+
+
+    <div class="container-fluid" id="banner"></div>
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notebooks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_ingest_using_test_radar_object.html">
+   Creating a basic ingest of a NetCDF file
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="changing_fields_and_saving.html">
+   Field manipulation and Saving the Radar Object to a file.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dealiasing_velocity.html">
+   Dealiasing Velocity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mapping_data_to_a_cartesian_grid.html">
+   Mapping Data to a Cartesian Grid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="masking_data_with_gatefilters.html">
+   Masking Data With Py-ART Gatefilters
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Py-ART Radar object and indexing
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                 <section class="tex2jax_ignore mathjax_ignore" id="the-py-art-radar-object-and-indexing">
+<h1>The Py-ART Radar object and indexing<a class="headerlink" href="#the-py-art-radar-object-and-indexing" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Py-ART radar object has functions and attributes that allow for a more</span>
+<span class="c1"># in depth look of the data and the radar object.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import needed modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the radar file</span>
+<span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;KATX20130717_195021_V06&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For a detailed print of the Py-ART radar object, use radar.info()</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>altitude:
+	data: &lt;ndarray of type: float64 and shape: (1,)&gt;
+	long_name: Altitude
+	standard_name: Altitude
+	units: meters
+	positive: up
+altitude_agl: None
+antenna_transition: None
+azimuth:
+	data: &lt;ndarray of type: float64 and shape: (7200,)&gt;
+	units: degrees
+	standard_name: beam_azimuth_angle
+	long_name: azimuth_angle_from_true_north
+	axis: radial_azimuth_coordinate
+	comment: Azimuth of antenna relative to true north
+elevation:
+	data: &lt;ndarray of type: float32 and shape: (7200,)&gt;
+	units: degrees
+	standard_name: beam_elevation_angle
+	long_name: elevation_angle_from_horizontal_plane
+	axis: radial_elevation_coordinate
+	comment: Elevation of antenna relative to the horizontal plane
+fields:
+	differential_reflectivity:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: dB
+		standard_name: log_differential_reflectivity_hv
+		long_name: log_differential_reflectivity_hv
+		valid_max: 7.9375
+		valid_min: -7.875
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+	differential_phase:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: degrees
+		standard_name: differential_phase_hv
+		long_name: differential_phase_hv
+		valid_max: 360.0
+		valid_min: 0.0
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+	reflectivity:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: dBZ
+		standard_name: equivalent_reflectivity_factor
+		long_name: Reflectivity
+		valid_max: 94.5
+		valid_min: -32.0
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+	cross_correlation_ratio:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: ratio
+		standard_name: cross_correlation_ratio_hv
+		long_name: Cross correlation_ratio (RHOHV)
+		valid_max: 1.0
+		valid_min: 0.0
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+	spectrum_width:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: meters_per_second
+		standard_name: doppler_spectrum_width
+		long_name: Spectrum Width
+		valid_max: 63.0
+		valid_min: -63.5
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+	velocity:
+		data: &lt;ndarray of type: float32 and shape: (7200, 1832)&gt;
+		units: meters_per_second
+		standard_name: radial_velocity_of_scatterers_away_from_instrument
+		long_name: Mean doppler Velocity
+		valid_max: 95.0
+		valid_min: -95.0
+		coordinates: elevation azimuth range
+		_FillValue: -9999.0
+fixed_angle:
+	data: &lt;ndarray of type: float32 and shape: (16,)&gt;
+	long_name: Target angle for sweep
+	units: degrees
+	standard_name: target_fixed_angle
+instrument_parameters:
+	unambiguous_range:
+		data: &lt;ndarray of type: float32 and shape: (7200,)&gt;
+		units: meters
+		comments: Unambiguous range
+		meta_group: instrument_parameters
+		long_name: Unambiguous range
+	nyquist_velocity:
+		data: &lt;ndarray of type: float32 and shape: (7200,)&gt;
+		units: meters_per_second
+		comments: Unambiguous velocity
+		meta_group: instrument_parameters
+		long_name: Nyquist velocity
+latitude:
+	data: &lt;ndarray of type: float64 and shape: (1,)&gt;
+	long_name: Latitude
+	standard_name: Latitude
+	units: degrees_north
+longitude:
+	data: &lt;ndarray of type: float64 and shape: (1,)&gt;
+	long_name: Longitude
+	standard_name: Longitude
+	units: degrees_east
+nsweeps: 16
+ngates: 1832
+nrays: 7200
+radar_calibration: None
+range:
+	data: &lt;ndarray of type: float32 and shape: (1832,)&gt;
+	units: meters
+	standard_name: projection_range_coordinate
+	long_name: range_to_measurement_volume
+	axis: radial_range_coordinate
+	spacing_is_constant: true
+	comment: Coordinate variable for range. Range to center of each bin.
+	meters_to_center_of_first_gate: 2125.0
+	meters_between_gates: 250.0
+scan_rate: None
+scan_type: ppi
+sweep_end_ray_index:
+	data: &lt;ndarray of type: int32 and shape: (16,)&gt;
+	long_name: Index of last ray in sweep, 0-based
+	units: count
+sweep_mode:
+	data: &lt;ndarray of type: |S20 and shape: (16,)&gt;
+	units: unitless
+	standard_name: sweep_mode
+	long_name: Sweep mode
+	comment: Options are: &quot;sector&quot;, &quot;coplane&quot;, &quot;rhi&quot;, &quot;vertical_pointing&quot;, &quot;idle&quot;, &quot;azimuth_surveillance&quot;, &quot;elevation_surveillance&quot;, &quot;sunscan&quot;, &quot;pointing&quot;, &quot;manual_ppi&quot;, &quot;manual_rhi&quot;
+sweep_number:
+	data: &lt;ndarray of type: int32 and shape: (16,)&gt;
+	units: count
+	standard_name: sweep_number
+	long_name: Sweep number
+sweep_start_ray_index:
+	data: &lt;ndarray of type: int32 and shape: (16,)&gt;
+	long_name: Index of first ray in sweep, 0-based
+	units: count
+target_scan_rate: None
+time:
+	data: &lt;ndarray of type: float64 and shape: (7200,)&gt;
+	units: seconds since 2013-07-17T19:50:21Z
+	standard_name: time
+	long_name: time_in_seconds_since_volume_start
+	calendar: gregorian
+	comment: Coordinate variable for time. Time at the center of each ray, in fractional seconds since the global variable time_coverage_start
+metadata:
+	Conventions: CF/Radial instrument_parameters
+	version: 1.3
+	title: 
+	institution: 
+	references: 
+	source: 
+	history: 
+	comment: 
+	instrument_name: KATX
+	original_container: NEXRAD Level II
+	vcp_pattern: 11
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s view the elevation parameter. Py-ART stores all fields as 2D masked arrays</span>
+<span class="c1"># of dimensions (number of rays) x (number of gates). Therefore, as the elevation can change with</span>
+<span class="c1"># each ray, the data in the elevation array is a 1D array of dimension (number of rays)</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">elevation</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;units&#39;: &#39;degrees&#39;,
+ &#39;standard_name&#39;: &#39;beam_elevation_angle&#39;,
+ &#39;long_name&#39;: &#39;elevation_angle_from_horizontal_plane&#39;,
+ &#39;axis&#39;: &#39;radial_elevation_coordinate&#39;,
+ &#39;comment&#39;: &#39;Elevation of antenna relative to the horizontal plane&#39;,
+ &#39;data&#39;: array([ 0.7470703,  0.7196045,  0.6893921, ..., 19.511719 , 19.511719 ,
+        19.511719 ], dtype=float32)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If we just want the elevations of one sweep, we can use the get_slice() function</span>
+<span class="c1"># of the Radar object to just get the elevations from one slice.</span>
+<span class="n">sweep_1</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">get_slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">elevation</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">sweep_1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375
+ 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375 0.52734375]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All of the radar fields are stored in a dictionary called radar.fields. This dictionary</span>
+<span class="c1"># contains entries that correspond to the field names in the file.</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;units&#39;: &#39;dBZ&#39;,
+ &#39;standard_name&#39;: &#39;equivalent_reflectivity_factor&#39;,
+ &#39;long_name&#39;: &#39;Reflectivity&#39;,
+ &#39;valid_max&#39;: 94.5,
+ &#39;valid_min&#39;: -32.0,
+ &#39;coordinates&#39;: &#39;elevation azimuth range&#39;,
+ &#39;_FillValue&#39;: -9999.0,
+ &#39;data&#39;: masked_array(
+   data=[[10.5, 7.5, --, ..., --, --, --],
+         [--, --, --, ..., --, --, --],
+         [9.5, --, --, ..., --, --, --],
+         ...,
+         [-10.5, -15.0, -9.5, ..., --, --, --],
+         [-14.0, -13.5, -13.5, ..., --, --, --],
+         [-11.0, -15.0, 0.5, ..., --, --, --]],
+   mask=[[False, False,  True, ...,  True,  True,  True],
+         [ True,  True,  True, ...,  True,  True,  True],
+         [False,  True,  True, ...,  True,  True,  True],
+         ...,
+         [False, False, False, ...,  True,  True,  True],
+         [False, False, False, ...,  True,  True,  True],
+         [False, False, False, ...,  True,  True,  True]],
+   fill_value=1e+20,
+   dtype=float32)}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This shows entries such as the data itself, coordinates, long name, and units. You can</span>
+<span class="c1"># access the array with the reflectivity data itself using radar.fields[&#39;reflectivity&#39;][&#39;data&#39;].</span>
+<span class="c1"># This is stored as a 2D masked array with dimensions (number of rays) x (number of gates)</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>masked_array(
+  data=[[10.5, 7.5, --, ..., --, --, --],
+        [--, --, --, ..., --, --, --],
+        [9.5, --, --, ..., --, --, --],
+        ...,
+        [-10.5, -15.0, -9.5, ..., --, --, --],
+        [-14.0, -13.5, -13.5, ..., --, --, --],
+        [-11.0, -15.0, 0.5, ..., --, --, --]],
+  mask=[[False, False,  True, ...,  True,  True,  True],
+        [ True,  True,  True, ...,  True,  True,  True],
+        [False,  True,  True, ...,  True,  True,  True],
+        ...,
+        [False, False, False, ...,  True,  True,  True],
+        [False, False, False, ...,  True,  True,  True],
+        [False, False, False, ...,  True,  True,  True]],
+  fill_value=1e+20,
+  dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you just want the data from one slice, you can get the indicies for the</span>
+<span class="c1"># slice using radar.get_slice()</span>
+<span class="n">slice_indices</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">get_slice</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">slice_indices</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[10.5 7.5 -- ... -- -- --]
+ [-- -- -- ... -- -- --]
+ [9.5 -- -- ... -- -- --]
+ ...
+ [-- 6.0 11.0 ... -- -- --]
+ [-- -- -- ... -- -- --]
+ [-- -- -- ... -- -- --]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can also iterate over each slice by using radar.iter_slice() This example</span>
+<span class="c1"># returns the mean reflectivity of each sweep.</span>
+<span class="n">reflectivity</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">radar</span><span class="o">.</span><span class="n">iter_slice</span><span class="p">()</span>
+<span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reflectivity</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-2.9066728410400056, -3.478547577741713, -6.587792083929423, -6.871031288639269, -10.971692217963673, -11.830616390843327, -12.108188248095756, -12.483419908190385, -12.88976917057903, -11.852766685681688, -12.410455582269897, -12.66444787446138, -12.997862391449566, -13.172098402018502, -13.489752513534416, -13.712565619531706]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can also view the important radar instrument parameters. One commonly used parameter</span>
+<span class="c1"># is the nyquist velocity, which is the maximum magnitude of the velocity the radar is</span>
+<span class="c1"># capable of recording before a phenomena known as aliasing occurs.</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">instrument_parameters</span><span class="p">[</span><span class="s2">&quot;nyquist_velocity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 8.81,  8.81,  8.81, ..., 32.33, 32.33, 32.33], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="masking_data_with_gatefilters.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Masking Data With Py-ART Gatefilters</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../blog.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Blog</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2013-2022, Py-ART developers.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Mapping Data to a Cartesian Grid &#8212; Py-ART 1.8.0.post981 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyart-theme.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/doc_shared.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Masking Data With Py-ART Gatefilters" href="masking_data_with_gatefilters.html" />
+    <link rel="prev" title="Dealiasing Velocity" href="dealiasing_velocity.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-JJEG3CV376');
+                </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../blog/atom.xml"
+  title="PyART Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+  <nav class="navbar navbar-dark navbar-expand-lg bg-arm fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">Py-ART</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../userguide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../API/index.html">
+  API Reference Manual
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples/index.html">
+  Example Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../notebook-gallery.html">
+  Notebook Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../changelog.html">
+  Changelog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/ARM-DOE/pyart" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/Py_ART" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  </nav>
+
+
+    <div class="container-fluid" id="banner"></div>
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notebooks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_ingest_using_test_radar_object.html">
+   Creating a basic ingest of a NetCDF file
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="changing_fields_and_saving.html">
+   Field manipulation and Saving the Radar Object to a file.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dealiasing_velocity.html">
+   Dealiasing Velocity
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Mapping Data to a Cartesian Grid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="masking_data_with_gatefilters.html">
+   Masking Data With Py-ART Gatefilters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_pyart_radar_object_and_indexing.html">
+   The Py-ART Radar object and indexing
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                 <section class="tex2jax_ignore mathjax_ignore" id="mapping-data-to-a-cartesian-grid">
+<h1>Mapping Data to a Cartesian Grid<a class="headerlink" href="#mapping-data-to-a-cartesian-grid" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In this notebook, we will show how to map data in Antenna coordinates to</span>
+<span class="c1"># a Cartesian grid using Py-ART&#39;s map submodule.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First import needed modules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the data that is in antenna coordinates.</span>
+<span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;110635.mdv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Py-ART has the Grid object which has characteristics that are similar to that of the</span>
+<span class="c1"># Radar object, except that the data are stored in Cartesian coordinates instead of the</span>
+<span class="c1"># radar&#39;s coordinates. Much like the Radar object, the fields are accessible by simply</span>
+<span class="c1"># accessing grid.fields[&#39;field_name&#39;][&#39;data&#39;], and the object contains parameters such as the</span>
+<span class="c1"># radar&#39;s location and projection.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can create a Grid object from a Radar object by using pyart.map.grid_from_radars()</span>
+<span class="c1"># Grid shape is the amount of points within a dimension. Grid limits is the dimension limits</span>
+<span class="c1"># in meters.</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">grid_from_radars</span><span class="p">(</span>
+    <span class="n">radar</span><span class="p">,</span>
+    <span class="n">grid_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>
+    <span class="n">grid_limits</span><span class="o">=</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mi">20000</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span><span class="o">-</span><span class="mf">100000.0</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">),</span>
+        <span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">),</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\sherm\documents\dev\pyart\pyart\map\gates_to_grid.py:160: DeprecationWarning: Barnes weighting function is deprecated. Please use Barnes 2 to be consistent with Pauley and Wu 1990.
+  warnings.warn(&quot;Barnes weighting function is deprecated.&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If with look at the coordinate data, we can see we have 201 points between</span>
+<span class="c1"># -100000 and 100000 meters.</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-100000.,  -99000.,  -98000.,  -97000.,  -96000.,  -95000.,
+        -94000.,  -93000.,  -92000.,  -91000.,  -90000.,  -89000.,
+        -88000.,  -87000.,  -86000.,  -85000.,  -84000.,  -83000.,
+        -82000.,  -81000.,  -80000.,  -79000.,  -78000.,  -77000.,
+        -76000.,  -75000.,  -74000.,  -73000.,  -72000.,  -71000.,
+        -70000.,  -69000.,  -68000.,  -67000.,  -66000.,  -65000.,
+        -64000.,  -63000.,  -62000.,  -61000.,  -60000.,  -59000.,
+        -58000.,  -57000.,  -56000.,  -55000.,  -54000.,  -53000.,
+        -52000.,  -51000.,  -50000.,  -49000.,  -48000.,  -47000.,
+        -46000.,  -45000.,  -44000.,  -43000.,  -42000.,  -41000.,
+        -40000.,  -39000.,  -38000.,  -37000.,  -36000.,  -35000.,
+        -34000.,  -33000.,  -32000.,  -31000.,  -30000.,  -29000.,
+        -28000.,  -27000.,  -26000.,  -25000.,  -24000.,  -23000.,
+        -22000.,  -21000.,  -20000.,  -19000.,  -18000.,  -17000.,
+        -16000.,  -15000.,  -14000.,  -13000.,  -12000.,  -11000.,
+        -10000.,   -9000.,   -8000.,   -7000.,   -6000.,   -5000.,
+         -4000.,   -3000.,   -2000.,   -1000.,       0.,    1000.,
+          2000.,    3000.,    4000.,    5000.,    6000.,    7000.,
+          8000.,    9000.,   10000.,   11000.,   12000.,   13000.,
+         14000.,   15000.,   16000.,   17000.,   18000.,   19000.,
+         20000.,   21000.,   22000.,   23000.,   24000.,   25000.,
+         26000.,   27000.,   28000.,   29000.,   30000.,   31000.,
+         32000.,   33000.,   34000.,   35000.,   36000.,   37000.,
+         38000.,   39000.,   40000.,   41000.,   42000.,   43000.,
+         44000.,   45000.,   46000.,   47000.,   48000.,   49000.,
+         50000.,   51000.,   52000.,   53000.,   54000.,   55000.,
+         56000.,   57000.,   58000.,   59000.,   60000.,   61000.,
+         62000.,   63000.,   64000.,   65000.,   66000.,   67000.,
+         68000.,   69000.,   70000.,   71000.,   72000.,   73000.,
+         74000.,   75000.,   76000.,   77000.,   78000.,   79000.,
+         80000.,   81000.,   82000.,   83000.,   84000.,   85000.,
+         86000.,   87000.,   88000.,   89000.,   90000.,   91000.,
+         92000.,   93000.,   94000.,   95000.,   96000.,   97000.,
+         98000.,   99000.,  100000.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In Py-ART&#39;s graphing suite, there is a display class similar to RadarMapDisplay,</span>
+<span class="c1"># but for grids. To plot the grid:</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">GridMapDisplay</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_grid</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\sherm\Anaconda3\envs\pyart_env\lib\site-packages\cartopy\mpl\geoaxes.py:782: MatplotlibDeprecationWarning: Passing the minor parameter of set_xticks() positionally is deprecated since Matplotlib 3.2; the parameter will become keyword-only two minor releases later.
+  return super(GeoAxes, self).set_xticks(xticks, minor)
+C:\Users\sherm\Anaconda3\envs\pyart_env\lib\site-packages\cartopy\mpl\geoaxes.py:829: MatplotlibDeprecationWarning: Passing the minor parameter of set_yticks() positionally is deprecated since Matplotlib 3.2; the parameter will become keyword-only two minor releases later.
+  return super(GeoAxes, self).set_yticks(yticks, minor)
+</pre></div>
+</div>
+<img alt="../_images/b486f41cf55c7a455b85d678b09cf117946df116dc513846baef3662bc7d327e.png" src="../_images/b486f41cf55c7a455b85d678b09cf117946df116dc513846baef3662bc7d327e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can even do both longitudnal and latitudnal slices. Change the lat parameter to view</span>
+<span class="c1"># different portions of the storm!</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_latitude_slice</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">36.75</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-50.0, 50.0)
+</pre></div>
+</div>
+<img alt="../_images/e1af18f5bdf1da51b4e3170ac2951c6cc07acc4e56fde7ab736046f2e186bf3f.png" src="../_images/e1af18f5bdf1da51b4e3170ac2951c6cc07acc4e56fde7ab736046f2e186bf3f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As you can see, this Grid suffers from gaps in data as well as artificial &quot;feathers&quot; near the</span>
+<span class="c1"># top that are simply the result of projecting the data to Cartesian coordinates. We would like</span>
+<span class="c1"># to eliminate these as much as possible. Thankfully, Py-ART let&#39;s us, on top of specifying the grid</span>
+<span class="c1"># resolution, also place in a custom radius of influence which controls how many points surrounding</span>
+<span class="c1"># the gate are factored into the interpolation. We can also change the weighting function used to</span>
+<span class="c1">#&#39;nearest neighbor&#39;, &#39;barnes&#39; or &#39;cressman&#39;. Let&#39;s try increasing the minimum radius of influence to 1.75 km</span>
+<span class="c1"># and use Cressman as the weighting function.</span>
+<span class="n">grid_better</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">grid_from_radars</span><span class="p">(</span>
+    <span class="n">radar</span><span class="p">,</span>
+    <span class="n">grid_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">41</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">),</span>
+    <span class="n">grid_limits</span><span class="o">=</span><span class="p">(</span>
+        <span class="p">(</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mi">20000</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="p">(</span><span class="o">-</span><span class="mf">100000.0</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">),</span>
+        <span class="p">(</span><span class="o">-</span><span class="mi">100000</span><span class="p">,</span> <span class="mf">100000.0</span><span class="p">),</span>
+    <span class="p">),</span>
+    <span class="n">roi_func</span><span class="o">=</span><span class="s2">&quot;dist_beam&quot;</span><span class="p">,</span>
+    <span class="n">min_radius</span><span class="o">=</span><span class="mf">1750.0</span><span class="p">,</span>
+    <span class="n">weighting_function</span><span class="o">=</span><span class="s2">&quot;cressman&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># As you can see, most of the artifacts at higher altitudes have been smoothed out, but we</span>
+<span class="c1"># have lost some spatial resolution as a result.</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">GridMapDisplay</span><span class="p">(</span><span class="n">grid_better</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_latitude_slice</span><span class="p">(</span><span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="mf">36.75</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-50.0, 50.0)
+</pre></div>
+</div>
+<img alt="../_images/f9b1c177e887742bc8210f20d89deb3eb8ca2f658f11f60982077bec6c84b71c.png" src="../_images/f9b1c177e887742bc8210f20d89deb3eb8ca2f658f11f60982077bec6c84b71c.png" />
+</div>
+</div>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="dealiasing_velocity.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Dealiasing Velocity</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="masking_data_with_gatefilters.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Masking Data With Py-ART Gatefilters</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2013-2022, Py-ART developers.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Dealiasing Velocity &#8212; Py-ART 1.8.0.post981 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pyart-theme.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/doc_shared.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mapping Data to a Cartesian Grid" href="mapping_data_to_a_cartesian_grid.html" />
+    <link rel="prev" title="Field manipulation and Saving the Radar Object to a file." href="changing_fields_and_saving.html" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-JJEG3CV376');
+                </script>
+ 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../blog/atom.xml"
+  title="PyART Blog"
+/>
+ 
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+  <nav class="navbar navbar-dark navbar-expand-lg bg-arm fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">Py-ART</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../userguide/index.html">
+  User Guide
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../API/index.html">
+  API Reference Manual
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../examples/index.html">
+  Example Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../notebook-gallery.html">
+  Notebook Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../blog.html">
+  Blog
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../changelog.html">
+  Changelog
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/ARM-DOE/pyart" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/Py_ART" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  </nav>
+
+
+    <div class="container-fluid" id="banner"></div>
+
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Notebooks
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="basic_ingest_using_test_radar_object.html">
+   Creating a basic ingest of a NetCDF file
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="changing_fields_and_saving.html">
+   Field manipulation and Saving the Radar Object to a file.
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Dealiasing Velocity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="mapping_data_to_a_cartesian_grid.html">
+   Mapping Data to a Cartesian Grid
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="masking_data_with_gatefilters.html">
+   Masking Data With Py-ART Gatefilters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="the_pyart_radar_object_and_indexing.html">
+   The Py-ART Radar object and indexing
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                 <section class="tex2jax_ignore mathjax_ignore" id="dealiasing-velocity">
+<h1>Dealiasing Velocity<a class="headerlink" href="#dealiasing-velocity" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The radial velocity measured by the radar is measured by detecting the phase shift between the</span>
+<span class="c1"># transmitted pulse and the pulse received by the radar. However, using this methodology, it is</span>
+<span class="c1"># only possible to detect phase shifts within +- 2pi due to the periodicity of the transmitted wave.</span>
+<span class="c1"># Therefore, for example, a phase shift of 3pi would erroneously be detected as a phase shift of -pi</span>
+<span class="c1"># and give an incorrect value of velocity when retrieved by the radar. This phenomena is called aliasing.</span>
+<span class="c1"># The maximium unambious velocity that can be detected by the radar before aliasing occurs is called</span>
+<span class="c1"># the Nyquist velocity.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First import needed modules.</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pyart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>## You are using the Python ARM Radar Toolkit (Py-ART), an open source
+## library for working with weather radar data. Py-ART is partly
+## supported by the U.S. Department of Energy as part of the Atmospheric
+## Radiation Measurement (ARM) Climate Research Facility, an Office of
+## Science user facility.
+##
+## If you use this software to prepare a publication, please cite:
+##
+##     JJ Helmus and SM Collis, JORS 2016, doi: 10.5334/jors.119
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the radar data.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;095636.mdv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span>
+    <span class="s2">&quot;reflectivity&quot;</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;50m&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span>
+    <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;50m&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_balance&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/98bb8d2ec0e49cc795a7b9ffb903b4c453d4cdd01616384f449f7f55ddc81645.png" src="../_images/98bb8d2ec0e49cc795a7b9ffb903b4c453d4cdd01616384f449f7f55ddc81645.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># First, for dealiasing to work efficiently, we need to use a GateFilter. Looks like, and we need to</span>
+<span class="c1"># do some preprocessing on the data to remove noise and clutter. Thankfully, Py-ART gives us the</span>
+<span class="c1"># capability to do this. As a simple filter in this example, we will first calculate the velocity texture</span>
+<span class="c1"># using Py-ART&#39;s calculate_velocity_texture function. The velocity texture is the standard deviation of</span>
+<span class="c1"># velocity surrounding a gate. This will be higher in the presence of noise.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">radar</span><span class="o">.</span><span class="n">instrument_parameters</span><span class="p">[</span><span class="s2">&quot;nyquist_velocity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([16.524973, 16.524973, 16.524973, ..., 16.524973, 16.524973,
+       16.524973], dtype=float32)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the nyquist to what we see in the instrument parameter above.</span>
+<span class="c1"># Calculate the velocity texture</span>
+<span class="n">vel_texture</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">retrieve</span><span class="o">.</span><span class="n">calculate_velocity_texture</span><span class="p">(</span>
+    <span class="n">radar</span><span class="p">,</span> <span class="n">vel_field</span><span class="o">=</span><span class="s2">&quot;velocity&quot;</span><span class="p">,</span> <span class="n">wind_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nyq</span><span class="o">=</span><span class="mf">16.524973</span>
+<span class="p">)</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;velocity_texture&quot;</span><span class="p">,</span> <span class="n">vel_texture</span><span class="p">,</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us see what the velocity texture looks like.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span>
+    <span class="s2">&quot;velocity_texture&quot;</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;50m&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_balance&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/02dcc03e47ac417417d83677945171b2db92fe6d89ee493647bfba9153ef1607.png" src="../_images/02dcc03e47ac417417d83677945171b2db92fe6d89ee493647bfba9153ef1607.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram of velocity texture to get a better idea of what values correspond to</span>
+<span class="c1"># hydrometeors and what values of texture correspond to artifacts.</span>
+<span class="c1"># In the below example, a threshold of 3 would eliminate most of the peak corresponding to noise</span>
+<span class="c1"># around 6 while preserving most of the values in the peak of ~0.5 corresponding to hydrometeors.</span>
+<span class="n">hist</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="s2">&quot;velocity_texture&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">2.0</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bins</span><span class="p">,</span> <span class="n">hist</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Velocity texture&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Count&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Count&#39;)
+</pre></div>
+</div>
+<img alt="../_images/87580eb9ec1a586c39c4d3d8c356ba68e282a916b00a15b03e5e6ad62815a441.png" src="../_images/87580eb9ec1a586c39c4d3d8c356ba68e282a916b00a15b03e5e6ad62815a441.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the gatefilter to be based on the velocity texture.</span>
+<span class="n">gatefilter</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">filters</span><span class="o">.</span><span class="n">GateFilter</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">gatefilter</span><span class="o">.</span><span class="n">exclude_above</span><span class="p">(</span><span class="s2">&quot;velocity_texture&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let us view the vleocity with the filter applied.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span>
+    <span class="s2">&quot;velocity&quot;</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;50m&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_balance&quot;</span><span class="p">,</span>
+    <span class="n">gatefilter</span><span class="o">=</span><span class="n">gatefilter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9ace402fa0462d13f4d202db1ecc9856129fae315d1c18ab69bdccf0c6885270.png" src="../_images/9ace402fa0462d13f4d202db1ecc9856129fae315d1c18ab69bdccf0c6885270.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># At this point, we can simply used dealias_region_based to dealias the velocities</span>
+<span class="c1"># and then add the new field to the radar.</span>
+<span class="n">nyq</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">instrument_parameters</span><span class="p">[</span><span class="s2">&quot;nyquist_velocity&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">velocity_dealiased</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">correct</span><span class="o">.</span><span class="n">dealias_region_based</span><span class="p">(</span>
+    <span class="n">radar</span><span class="p">,</span> <span class="n">vel_field</span><span class="o">=</span><span class="s2">&quot;velocity&quot;</span><span class="p">,</span> <span class="n">nyquist_vel</span><span class="o">=</span><span class="n">nyq</span><span class="p">,</span> <span class="n">centered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gatefilter</span><span class="o">=</span><span class="n">gatefilter</span>
+<span class="p">)</span>
+<span class="n">radar</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;corrected_velocity&quot;</span><span class="p">,</span> <span class="n">velocity_dealiased</span><span class="p">,</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the new velocities, which now look much more realistic.</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="n">display</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">RadarMapDisplay</span><span class="p">(</span><span class="n">radar</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">plot_ppi_map</span><span class="p">(</span>
+    <span class="s2">&quot;corrected_velocity&quot;</span><span class="p">,</span>
+    <span class="n">sweep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">resolution</span><span class="o">=</span><span class="s2">&quot;50m&quot;</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pyart_balance&quot;</span><span class="p">,</span>
+    <span class="n">gatefilter</span><span class="o">=</span><span class="n">gatefilter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d8be7e4fabe135a3dc29792eb7c6725b5823e4af941c64e1d9f54b53fc00591e.png" src="../_images/d8be7e4fabe135a3dc29792eb7c6725b5823e4af941c64e1d9f54b53fc00591e.png" />
+</div>
+</div>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="changing_fields_and_saving.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Field manipulation and Saving the Radar Object to a file.</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="mapping_data_to_a_cartesian_grid.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Mapping Data to a Cartesian Grid</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2013-2022, Py-ART developers.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
