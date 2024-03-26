@@ -1,481 +1,570 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" data-theme="light">
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Convective-Stratiform classification &#8212; Py-ART 1.8.0.post981 documentation</title>
-    
+    <title>Convective-Stratiform classification &#8212; Py-ART 1.8.0.post1064 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/pyart-theme.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pyart-theme.css?v=40b48845" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=39e7c775"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="../../_static/doc_shared.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-JJEG3CV376');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/retrieve/plot_convective_stratiform';</script>
+    <script src="../../_static/doc_shared.js?v=6c7402a7"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Notebook Gallery" href="../../notebook-gallery.html" />
-    <link rel="prev" title="Calculate and Plot hydrometeor classification" href="plot_hydrometeor.html" /> 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
+    <link rel="next" title="Feature Detection classification" href="plot_feature_detection.html" />
+    <link rel="prev" title="Creating a CFAD diagram" href="plot_cfad.html" />
 
-    <!-- Google Analytics -->
-    
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
-<script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments); }
-                    gtag('js', new Date());
-                    gtag('config', 'G-JJEG3CV376');
-                </script>
- 
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+
 <link
   rel="alternate"
   type="application/atom+xml"
   href="../../blog/atom.xml"
   title="PyART Blog"
 />
- 
-<style type="text/css">
-  ul.ablog-archive {
-    list-style: none;
-    overflow: auto;
-    margin-left: 0px;
-  }
-  ul.ablog-archive li {
-    float: left;
-    margin-right: 5px;
-    font-size: 80%;
-  }
-  ul.postlist a {
-    font-style: italic;
-  }
-  ul.postlist-style-disc {
-    list-style-type: disc;
-  }
-  ul.postlist-style-none {
-    list-style-type: none;
-  }
-  ul.postlist-style-circle {
-    list-style-type: circle;
-  }
-</style>
+
+
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="light">
 
-    
-  <nav class="navbar navbar-dark navbar-expand-lg bg-arm fixed-top bd-navbar shadow" id="navbar-main"><div class="container-xl">
-
-  <div id="navbar-start">
-    
-    
-<a class="navbar-brand" href="../../index.html">
-<p class="title">Py-ART</p>
-</a>
-
-    
-  </div>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
   </button>
 
   
-  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
-    <div id="navbar-center" class="mr-auto">
-      
-      <div class="navbar-center-item">
-        <ul id="navbar-main-elements" class="navbar-nav">
-    <li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../userguide/index.html">
-  User Guide
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../API/index.html">
-  API Reference Manual
- </a>
-</li>
-
-<li class="toctree-l1 current active nav-item">
- <a class="reference internal nav-link" href="../index.html">
-  Example Gallery
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../notebook-gallery.html">
-  Notebook Gallery
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../blog.html">
-  Blog
- </a>
-</li>
-
-<li class="toctree-l1 nav-item">
- <a class="reference internal nav-link" href="../../changelog.html">
-  Changelog
- </a>
-</li>
-
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
     
-</ul>
-      </div>
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Py-ART 1.8.0.post1064 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../userguide/index.html">
+                        User Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Example Gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../API/index.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../dev/index.html">
+                        Developer’s Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../notebook-gallery.html">
+                        Notebook Gallery
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
       
     </div>
-
-    <div id="navbar-end">
+    
+    
+    <div class="navbar-header-items__end">
       
-      <div class="navbar-end-item">
-        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/ARM-DOE/pyart" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
-            <label class="sr-only">GitHub</label></a>
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ARM-DOE/pyart" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://twitter.com/Py_ART" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter-square"></i></span>
-            <label class="sr-only">Twitter</label></a>
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/Py_ART" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
         </li>
-      </ul>
-      </div>
+</ul></div>
       
     </div>
+    
   </div>
-</div>
-  </nav>
+  
+  
+    <div class="navbar-persistent--mobile">
 
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
 
-    <div class="container-fluid" id="banner"></div>
-
-
-    <div class="container-xl">
-      <div class="row">
-          
-            
-            <!-- Only show if we have sidebars configured, else just a small margin  -->
-            <div class="col-12 col-md-3 bd-sidebar">
-              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <div class="bd-toc-item active">
-    <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../correct/index.html">
-   Moment correction examples
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../correct/plot_attenuation.html">
-     Correct reflectivity attenuation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../correct/plot_dealias.html">
-     Dealias doppler velocities using the Region Based Algorithm
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../io/index.html">
-   Input/Output Examples
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../io/plot_older_nexrad_data_aws.html">
-     Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../io/plot_nexrad_data_aws.html">
-     Reading NEXRAD Data from the AWS Cloud
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../mapping/index.html">
-   Mapping examples
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mapping/plot_map_one_radar_to_grid.html">
-     Map a single radar to a Cartesian grid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mapping/plot_map_two_radars_to_grid.html">
-     Map two radars to a Cartesian grid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../mapping/plot_compare_two_radars_gatemapper.html">
-     Compare Two Radars Using Gatemapper
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../plotting/index.html">
-   Plotting examples
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_mdv.html">
-     Create a RHI plot from a MDV file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_ppi_mdv.html">
-     Create a PPI plot from a MDV file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_ppi_cfradial.html">
-     Create a PPI plot from a Cfradial file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_nexrad_reflectivity.html">
-     Create a plot of NEXRAD reflectivity
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_xsect.html">
-     Plot a cross section from  a PPI volume
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_cfradial_singlescan.html">
-     Create a multiple panel RHI plot from a CF/Radial file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_two_panel.html">
-     Create a two panel RHI plot
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_nexrad_multiple_moments.html">
-     Create a plot of multiple moments from a NEXRAD file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_cfradial.html">
-     Create a multiple panel RHI plot from a CF/Radial file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_three_panel_gridmapdisplay.html">
-     Create a 3 panel plot using GridMapDisplay
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_ppi_with_rings.html">
-     Create a PPI plot on a cartopy map
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_nexrad_image_muted_reflectivity.html">
-     Create an image-muted reflectivity plot
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_data_overlay.html">
-     Create an RHI plot with reflectivity contour lines from an MDV file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_cross_section.html">
-     Plot a Cross Section from a Grid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_modify_colorbar.html">
-     Modify a Colorbar for your Plot
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_rhi_contours_differential_reflectivity.html">
-     Create an RHI plot with reflectivity contour lines from an MDV file
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../plotting/plot_choose_a_colormap.html">
-     Choose a Colormap for your Plot
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="index.html">
-   Retrieval Examples
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="plot_column_subset.html">
-     Extract a radar column above a point
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plot_composite_reflectivity.html">
-     Calculate and Plot Composite Reflectivity
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plot_vad.html">
-     Calculate and Plot VAD profile
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="plot_hydrometeor.html">
-     Calculate and Plot hydrometeor classification
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Convective-Stratiform classification
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-  </div>
-</nav>
-              </div>
-              <div class="sidebar-end-items">
-              </div>
-            </div>
-            
-          
-
-          
-          <div class="d-none d-xl-block col-xl-2 bd-toc">
-            
-              
-              <div class="toc-item">
-                
-<div class="tocsection onthispage mt-5 pt-1 pb-3">
-    <i class="fas fa-list"></i> On this page
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-the-algorithm-works">
-   How the algorithm works
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples">
-   Examples
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary-of-recommendations-and-best-practices">
-   Summary of recommendations and best practices
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
+    </header>
+  
 
-</nav>
-              </div>
-              
-              <div class="toc-item">
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../userguide/index.html">
+                        User Guide
+                      </a>
+                    </li>
                 
-              </div>
-              
-            
-          </div>
-          
 
-          
-          
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="../index.html">
+                        Example Gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../API/index.html">
+                        API Reference Manual
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../dev/index.html">
+                        Developer’s Guide
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../notebook-gallery.html">
+                        Notebook Gallery
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../blog.html">
+                        Blog
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="../../changelog.html">
+                        Changelog
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
             
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
           
-          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ARM-DOE/pyart" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/Py_ART" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../correct/index.html">Moment correction examples</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../correct/plot_attenuation.html">Correct reflectivity attenuation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../correct/plot_dealias.html">Dealias doppler velocities using the Region Based Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../io/index.html">Input/Output Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../io/plot_older_nexrad_data_aws.html">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/plot_nexrad_data_aws.html">Reading NEXRAD Data from the AWS Cloud</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mapping/index.html">Mapping examples</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mapping/plot_map_one_radar_to_grid.html">Map a single radar to a Cartesian grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mapping/plot_map_two_radars_to_grid.html">Map two radars to a Cartesian grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mapping/plot_grid_single_sweep_ppi.html">Map a single PPI sweep to a Cartesian grid using 2D weighting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mapping/plot_compare_two_radars_gatemapper.html">Compare Two Radars Using Gatemapper</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../plotting/index.html">Plotting examples</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_mdv.html">Create a RHI plot from a MDV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_ppi_mdv.html">Create a PPI plot from a MDV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_ppi_cfradial.html">Create a PPI plot from a Cfradial file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_nexrad_reflectivity.html">Create a plot of NEXRAD reflectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_xsect.html">Plot a cross section from  a PPI volume</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_cfradial_singlescan.html">Create a multiple panel RHI plot from a CF/Radial file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_two_panel.html">Create a two panel RHI plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_nexrad_multiple_moments.html">Create a plot of multiple moments from a NEXRAD file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_cfradial.html">Create a multiple panel RHI plot from a CF/Radial file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_three_panel_gridmapdisplay.html">Create a 3 panel plot using GridMapDisplay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_ppi_with_rings.html">Create a PPI plot on a cartopy map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_nexrad_image_muted_reflectivity.html">Create an image-muted reflectivity plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_data_overlay.html">Create an RHI plot with reflectivity contour lines from an MDV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_cross_section.html">Plot a Cross Section from a Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_modify_colorbar.html">Modify a Colorbar for your Plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_rhi_contours_differential_reflectivity.html">Create an RHI plot with reflectivity contour lines from an MDV file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plotting/plot_choose_a_colormap.html">Choose a Colormap for your Plot</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Retrieval Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="plot_column_subset.html">Extract a radar column above a point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_composite_reflectivity.html">Calculate and Plot Composite Reflectivity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_vad.html">Calculate and Plot VAD profile</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_hydrometeor.html">Calculate and Plot hydrometeor classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_cfad.html">Creating a CFAD diagram</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Convective-Stratiform classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_feature_detection.html">Feature Detection classification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../xradar/index.html">Xradar Examples</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../xradar/plot_xradar.html">Plot a PPI Using Xradar and Py-ART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xradar/plot_grid_xradar.html">Grid Data Using Xradar and Py-ART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xradar/plot_dealias_xradar.html">Dealias Radial Velocities Using Xradar and Py-ART</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
               
-              <div>
-                 <div class="sphx-glr-download-link-note admonition note">
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Example Gallery</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Retrieval Examples</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Convective-S...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+<div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-examples-retrieve-plot-convective-stratiform-py"><span class="std std-ref">here</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-examples-retrieve-plot-convective-stratiform-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="convective-stratiform-classification">
-<span id="sphx-glr-examples-retrieve-plot-convective-stratiform-py"></span><h1>Convective-Stratiform classification<a class="headerlink" href="#convective-stratiform-classification" title="Permalink to this headline">#</a></h1>
+<span id="sphx-glr-examples-retrieve-plot-convective-stratiform-py"></span><h1>Convective-Stratiform classification<a class="headerlink" href="#convective-stratiform-classification" title="Permalink to this heading">#</a></h1>
 <p>This example shows how to use the updated convective stratiform classifcation algorithm. We show 3 examples,
 a summer convective example, an example from Hurricane Ian, and an example from a winter storm.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
 
 <span class="c1"># Author: Laura Tomkins (lmtomkin@ncsu.edu)</span>
 <span class="c1"># License: BSD 3 clause</span>
@@ -490,7 +579,7 @@ a summer convective example, an example from Hurricane Ian, and an example from 
 </pre></div>
 </div>
 <section id="how-the-algorithm-works">
-<h2>How the algorithm works<a class="headerlink" href="#how-the-algorithm-works" title="Permalink to this headline">#</a></h2>
+<h2>How the algorithm works<a class="headerlink" href="#how-the-algorithm-works" title="Permalink to this heading">#</a></h2>
 <p>This first section describes how the convective-stratiform algorithm works (see references for full details). This
 algorithm is a feature detection algorithm and classifies fields as “convective” or “stratiform”. The algorithm is
 designed to detect features in a reflectivity field but can also detect features in fields such as rain rate or
@@ -518,16 +607,20 @@ and the background is zero, or where the cosine function crosses the x-axis. Not
 all values greater than <code class="docutils literal notranslate"><span class="pre">always_core_thres</span></code> will be considered a convective core. If
 <code class="docutils literal notranslate"><span class="pre">always_core_thres</span></code> &gt; <code class="docutils literal notranslate"><span class="pre">zero_diff_cos_val</span></code> then all values greater than <code class="docutils literal notranslate"><span class="pre">zero_diff_cos_val</span></code> will be considered a
 convective core. We plot some examples of the schemes below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot cosine scheme</span>
-<span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
+<p>Example of the cosine scheme:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
     <span class="n">always_core_thres</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">use_cosine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_diff</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zero_diff_cos_val</span><span class="o">=</span><span class="mi">45</span>
 <span class="p">)</span>
-<span class="c1"># when zero_diff_cos_val is greater than always_core_thres, the difference becomes zero at the zero_diff_cos_val</span>
-<span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_001.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_001.png" alt="Convective Stratiform Equation" class = "sphx-glr-single-img"/><p>when zero_diff_cos_val is greater than always_core_thres, the difference becomes zero at the zero_diff_cos_val</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
     <span class="n">always_core_thres</span><span class="o">=</span><span class="mi">55</span><span class="p">,</span> <span class="n">use_cosine</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_diff</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zero_diff_cos_val</span><span class="o">=</span><span class="mi">45</span>
 <span class="p">)</span>
-<span class="c1"># alternatively, we can use a simpler scalar difference instead of a cosine scheme</span>
-<span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_002.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_002.png" alt="Convective Stratiform Equation" class = "sphx-glr-single-img"/><p>alternatively, we can use a simpler scalar difference instead of a cosine scheme</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
     <span class="n">always_core_thres</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
     <span class="n">use_cosine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">max_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -535,9 +628,11 @@ convective core. We plot some examples of the schemes below:</p>
     <span class="n">use_addition</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">scalar_diff</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="c1"># if you are interested in picking up weak features, you can also use the scalar difference as a multiplier instead,</span>
-<span class="c1"># so very weak features do not have to be that different from the background to be classified as convective.</span>
-<span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_003.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_003.png" alt="Convective Stratiform Equation" class = "sphx-glr-single-img"/><p>if you are interested in picking up weak features, you can also use the scalar difference as a multiplier instead,
+so very weak features do not have to be that different from the background to be classified as convective.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">pyart</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">plot_convstrat_scheme</span><span class="p">(</span>
     <span class="n">always_core_thres</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
     <span class="n">use_cosine</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">max_diff</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -547,7 +642,7 @@ convective core. We plot some examples of the schemes below:</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_convective_stratiform_001.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_001.png" alt="Convective Stratiform Equation" class = "sphx-glr-single-img"/><p>Once the cores are identified, there is an option to remove speckles (<code class="docutils literal notranslate"><span class="pre">remove_small_objects</span></code>) smaller than a  given
+<img src="../../_images/sphx_glr_plot_convective_stratiform_004.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_004.png" alt="Convective Stratiform Equation" class = "sphx-glr-single-img"/><p>Once the cores are identified, there is an option to remove speckles (<code class="docutils literal notranslate"><span class="pre">remove_small_objects</span></code>) smaller than a  given
 size (<code class="docutils literal notranslate"><span class="pre">min_km2_size</span></code>).
 After the convective cores are identified, We then incorporate convective radii using
 <code class="docutils literal notranslate"><span class="pre">val_for_max_conv_rad</span></code> and <code class="docutils literal notranslate"><span class="pre">max_conv_rad_km</span></code>. The convective radii act as a dilation and are used to classify
@@ -559,11 +654,11 @@ Finally, the points are classified as NOSFCECHO (threshold set with <code class=
 <code class="docutils literal notranslate"><span class="pre">weak_echo_thres</span></code>; 3), SF (stratiform; 1), CONV (convective; 2).</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h2>
 <p><strong>Classification of summer convective example</strong></p>
 <p>Our first example classifies echo from a summer convective event. We use a cosine scheme to classify the convective
 points.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s do a classification with our parameters</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Now let&#39;s do a classification with our parameters</span>
 <span class="c1"># read in file</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filename</span></a> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">get_test_data</span><span class="p">(</span><span class="s2">&quot;swx_20120520_0641.nc&quot;</span><span class="p">)</span>
 <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filename</span></a><span class="p">)</span>
@@ -600,13 +695,13 @@ points.</p>
 
 <span class="c1"># add to grid object</span>
 <span class="c1"># mask zero values (no surface echo)</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="c1"># mask 3 values (weak echo)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="c1"># add dimension to array to add to grid object</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 <span class="c1"># add field</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># create plot using GridMapDisplay</span>
 <span class="c1"># plot variables</span>
@@ -619,13 +714,8 @@ points.</p>
     <span class="n">central_latitude</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span></a><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
     <span class="n">central_longitude</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span></a><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-<p>Note how the convective stratiform field has less data around the edges compared to the reflectivity
-field. This is because the function is designed to only compute the background radius where the footprint has 75%
-of data, so along the edges there is not enough data to fulfill this requirement. The footprint percentage can be
-changed using the variable <code class="docutils literal notranslate"><span class="pre">calc_thres</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+
+<span class="c1"># plot</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html#matplotlib.pyplot.subplot" title="matplotlib.pyplot.subplot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
 <span class="n">display</span><span class="o">.</span><span class="n">plot_grid</span><span class="p">(</span>
@@ -650,29 +740,29 @@ changed using the variable <code class="docutils literal notranslate"><span clas
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_convective_stratiform_002.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_002.png" alt="xsapr-sg 0.0 km 2011-05-20T06:42:11Z  Equivalent reflectivity factor, xsapr-sg 0.0 km 2011-05-20T06:42:11Z  Convsf" class = "sphx-glr-single-img"/><p>In addition to the default convective-stratiform classification, the function also returns an underestimate
+<img src="../../_images/sphx_glr_plot_convective_stratiform_005.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_005.png" alt="xsapr-sg 0.0 km 2011-05-20T06:42:11Z  Equivalent reflectivity factor, xsapr-sg 0.0 km 2011-05-20T06:42:11Z  Feature detection" class = "sphx-glr-single-img"/><p>In addition to the default convective-stratiform classification, the function also returns an underestimate
 (convsf_under) and an overestimate (convsf_over) to take into consideration the uncertainty when choosing
 classification parameters. The under and overestimate use the same parameters, but vary the input field by a
 certain value (default is 5 dBZ, can be changed with <code class="docutils literal notranslate"><span class="pre">estimate_offset</span></code>). The estimation can be turned off (
 <code class="docutils literal notranslate"><span class="pre">estimate_flag=False</span></code>), but we recommend keeping it turned on.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mask weak echo and no surface echo</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mask weak echo and no surface echo</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 <span class="c1"># underest.</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 <span class="c1"># overest.</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 
 <span class="c1"># Plot each estimation</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html#matplotlib.pyplot.subplot" title="matplotlib.pyplot.subplot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="mi">131</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pcolormesh.html#matplotlib.axes.Axes.pcolormesh" title="matplotlib.axes.Axes.pcolormesh" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax1</span><span class="o">.</span><span class="n">pcolormesh</span></a><span class="p">(</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
     <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.get_cmap.html#matplotlib.pyplot.get_cmap" title="matplotlib.pyplot.get_cmap" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span></a><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
@@ -681,22 +771,28 @@ certain value (default is 5 dBZ, can be changed with <code class="docutils liter
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect" title="matplotlib.axes.Axes.set_aspect" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax1</span><span class="o">.</span><span class="n">set_aspect</span></a><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
 <span class="n">ax2</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html#matplotlib.pyplot.subplot" title="matplotlib.pyplot.subplot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pcolormesh.html#matplotlib.axes.Axes.pcolormesh" title="matplotlib.axes.Axes.pcolormesh" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax2</span><span class="o">.</span><span class="n">pcolormesh</span></a><span class="p">(</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.get_cmap.html#matplotlib.pyplot.get_cmap" title="matplotlib.pyplot.get_cmap" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span></a><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_under&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.get_cmap.html#matplotlib.pyplot.get_cmap" title="matplotlib.pyplot.get_cmap" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span></a><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="s2">&quot;Underestimate&quot;</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect" title="matplotlib.axes.Axes.set_aspect" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax2</span><span class="o">.</span><span class="n">set_aspect</span></a><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
-<span class="n">ax3</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html#matplotlib.pyplot.subplot" title="matplotlib.pyplot.subplot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax3</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html#matplotlib.pyplot.subplot" title="matplotlib.pyplot.subplot" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span></a><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.pcolormesh.html#matplotlib.axes.Axes.pcolormesh" title="matplotlib.axes.Axes.pcolormesh" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax3</span><span class="o">.</span><span class="n">pcolormesh</span></a><span class="p">(</span>
-    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.get_cmap.html#matplotlib.pyplot.get_cmap" title="matplotlib.pyplot.get_cmap" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span></a><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_over&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.get_cmap.html#matplotlib.pyplot.get_cmap" title="matplotlib.pyplot.get_cmap" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span></a><span class="p">(</span><span class="s2">&quot;viridis&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
 <span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="s2">&quot;Overestimate&quot;</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_aspect.html#matplotlib.axes.Axes.set_aspect" title="matplotlib.axes.Axes.set_aspect" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax3</span><span class="o">.</span><span class="n">set_aspect</span></a><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_convective_stratiform_003.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_003.png" alt="Best estimate, Underestimate, Overestimate" class = "sphx-glr-single-img"/><p><strong>Tropical example</strong></p>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_006.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_006.png" alt="Best estimate, Underestimate, Overestimate" class = "sphx-glr-single-img"/><p><strong>Tropical example</strong></p>
 <p>Let’s get a NEXRAD file from Hurricane Ian</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in file</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nexrad_file</span></a> <span class="o">=</span> <span class="s2">&quot;s3://noaa-nexrad-level2/2022/09/28/KTBW/KTBW20220928_190142_V06&quot;</span>
 <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_nexrad_archive</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nexrad_file</span></a><span class="p">)</span>
 
@@ -733,13 +829,13 @@ certain value (default is 5 dBZ, can be changed with <code class="docutils liter
 
 <span class="c1"># add to grid object</span>
 <span class="c1"># mask zero values (no surface echo)</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="c1"># mask 3 values (weak echo)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="c1"># add dimension to array to add to grid object</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 <span class="c1"># add field</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># create plot using GridMapDisplay</span>
 <span class="c1"># plot variables</span>
@@ -779,7 +875,7 @@ certain value (default is 5 dBZ, can be changed with <code class="docutils liter
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_convective_stratiform_004.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_004.png" alt="KTBW 0.0 km 2022-09-28T19:01:42Z  Equivalent reflectivity factor, KTBW 0.0 km 2022-09-28T19:01:42Z  Convsf" class = "sphx-glr-single-img"/><p><strong>Winter storm example with image muting</strong></p>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_007.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_007.png" alt="KTBW 0.0 km 2022-09-28T19:01:42Z  Equivalent reflectivity factor, KTBW 0.0 km 2022-09-28T19:01:42Z  Feature detection" class = "sphx-glr-single-img"/><p><strong>Winter storm example with image muting</strong></p>
 <p>Here is a final example of the convective stratiform classification using an example from a winter storm. Before
 doing the classification, we image mute the reflectivity to remove regions with melting or mixed precipitation. We
 then rescale the reflectivity to snow rate (Rasumussen et al. 2003). We recommend using a rescaled reflectivity
@@ -788,7 +884,7 @@ to convert reflectivity to a linear value before averaging (set dB_averaging to 
 dBZ units).
 In this example, note how we change some of the other parameters since we are classifying snow rate instead of
 reflecitivity.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in file</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read in file</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nexrad_file</span></a> <span class="o">=</span> <span class="s2">&quot;s3://noaa-nexrad-level2/2021/02/07/KOKX/KOKX20210207_161413_V06&quot;</span>
 <span class="n">radar</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_nexrad_archive</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">nexrad_file</span></a><span class="p">)</span>
 
@@ -850,13 +946,13 @@ reflecitivity.</p>
 
 <span class="c1"># add to grid object</span>
 <span class="c1"># mask zero values (no surface echo)</span>
-<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
+<a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 <span class="c1"># mask 3 values (weak echo)</span>
 <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ma.masked_equal.html#numpy.ma.masked_equal" title="numpy.ma.masked_equal" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="c1"># add dimension to array to add to grid object</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="numpy.ma.MaskedArray" class="sphx-glr-backref-module-numpy-ma sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_masked</span></a>
 <span class="c1"># add field</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;convsf&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">add_field</span><span class="p">(</span><span class="s2">&quot;convsf&quot;</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#dict" title="builtins.dict" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">convsf_dict</span></a><span class="p">[</span><span class="s2">&quot;feature_detection&quot;</span><span class="p">],</span> <span class="n">replace_existing</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># create plot using GridMapDisplay</span>
 <span class="c1"># plot variables</span>
@@ -896,9 +992,9 @@ reflecitivity.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_convective_stratiform_005.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_005.png" alt="KOKX 0.0 km 2021-02-07T16:14:13Z  Snow rate, KOKX 0.0 km 2021-02-07T16:14:13Z  Convsf" class = "sphx-glr-single-img"/></section>
+<img src="../../_images/sphx_glr_plot_convective_stratiform_008.png" srcset="../../_images/sphx_glr_plot_convective_stratiform_008.png" alt="KOKX 0.0 km 2021-02-07T16:14:13Z  Snow rate, KOKX 0.0 km 2021-02-07T16:14:13Z  Feature detection" class = "sphx-glr-single-img"/></section>
 <section id="summary-of-recommendations-and-best-practices">
-<h2>Summary of recommendations and best practices<a class="headerlink" href="#summary-of-recommendations-and-best-practices" title="Permalink to this headline">#</a></h2>
+<h2>Summary of recommendations and best practices<a class="headerlink" href="#summary-of-recommendations-and-best-practices" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Tune your parameters to your specific purpose</p></li>
 <li><p>Use a rescaled field if possible (i.e. linear reflectivity, rain or snow rate)</p></li>
@@ -906,7 +1002,7 @@ reflecitivity.</p>
 </ul>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <p>Steiner, M. R., R. A. Houze Jr., and S. E. Yuter, 1995: Climatological
 Characterization of Three-Dimensional Storm Structure from Operational
 Radar and Rain Gauge Data. J. Appl. Meteor., 34, 1978-2007.
@@ -922,68 +1018,139 @@ KWAJEX. J. Appl. Meteor., 44, 385-415. <a class="reference external" href="https
 and M. Xu, 2003: Snow Nowcasting Using a Real-Time Correlation of Radar
 Reflectivity with Snow Gauge Accumulation. J. Appl. Meteorol. Climatol., 42, 20–36.
 <a class="reference external" href="https://doi.org/10.1175/1520-0450(2003)042%3C0020:SNUART%3E2.0.CO;2">https://doi.org/10.1175/1520-0450(2003)042%3C0020:SNUART%3E2.0.CO;2</a></p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  26.907 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 20.670 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-retrieve-plot-convective-stratiform-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../../_downloads/1d62df8aa64385317dcd707d9a779b45/plot_convective_stratiform.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_convective_stratiform.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/9716299ffa7f4b0b02cc21dac45e7320/plot_convective_stratiform.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_convective_stratiform.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1d62df8aa64385317dcd707d9a779b45/plot_convective_stratiform.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_convective_stratiform.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
 </section>
 </section>
 
-<div class="section">
-   
+<div class="section ablog__blog_comments">
+  
+  
 </div>
 
-              </div>
+                </article>
               
               
-              <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="plot_hydrometeor.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Calculate and Plot hydrometeor classification</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="../../notebook-gallery.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Notebook Gallery</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
               
-          </main>
-          
-
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="plot_cfad.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Creating a CFAD diagram</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="plot_feature_detection.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Feature Detection classification</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-the-algorithm-works">How the algorithm works</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-recommendations-and-best-practices">Summary of recommendations and best practices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/examples/retrieve/plot_convective_stratiform.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-<footer class="footer mt-5 mt-md-0">
-  <div class="container">
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
     
-    <div class="footer-item">
-      <p class="copyright">
-    &copy; Copyright 2013-2022, Py-ART developers.<br>
-</p>
+      © Copyright 2013-2022, Py-ART developers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    <br/>
+  </p>
+</div>
+      
     </div>
-    
-    <div class="footer-item">
-      <p class="sphinx-version">
-Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
-</p>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+</p></div>
+      
     </div>
-    
-  </div>
-</footer>
+  
+</div>
+
+  </footer>
   </body>
 </html>

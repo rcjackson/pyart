@@ -3,18 +3,53 @@
 
 .. _sphx_glr_examples_retrieve_sg_execution_times:
 
+
 Computation times
 =================
-**00:42.088** total execution time for **examples_retrieve** files:
+**00:59.215** total execution time for 7 files **from examples/retrieve**:
 
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_retrieve_plot_convective_stratiform.py` (``plot_convective_stratiform.py``)   | 00:26.907 | 0.0 MB |
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_retrieve_plot_vad.py` (``plot_vad.py``)                                       | 00:04.534 | 0.0 MB |
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_retrieve_plot_hydrometeor.py` (``plot_hydrometeor.py``)                       | 00:03.889 | 0.0 MB |
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_retrieve_plot_composite_reflectivity.py` (``plot_composite_reflectivity.py``) | 00:03.792 | 0.0 MB |
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_examples_retrieve_plot_column_subset.py` (``plot_column_subset.py``)                   | 00:02.966 | 0.0 MB |
-+-------------------------------------------------------------------------------------------------------+-----------+--------+
+.. container::
+
+  .. raw:: html
+
+    <style scoped>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
+    } );
+    </script>
+
+  .. list-table::
+   :header-rows: 1
+   :class: table table-striped sg-datatable
+
+   * - Example
+     - Time
+     - Mem (MB)
+   * - :ref:`sphx_glr_examples_retrieve_plot_feature_detection.py` (``plot_feature_detection.py``)
+     - 00:25.505
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_convective_stratiform.py` (``plot_convective_stratiform.py``)
+     - 00:20.670
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_composite_reflectivity.py` (``plot_composite_reflectivity.py``)
+     - 00:03.301
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_vad.py` (``plot_vad.py``)
+     - 00:02.838
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_cfad.py` (``plot_cfad.py``)
+     - 00:02.578
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_hydrometeor.py` (``plot_hydrometeor.py``)
+     - 00:02.176
+     - 0.0
+   * - :ref:`sphx_glr_examples_retrieve_plot_column_subset.py` (``plot_column_subset.py``)
+     - 00:02.147
+     - 0.0

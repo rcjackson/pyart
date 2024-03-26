@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_plotting_plot_choose_a_colormap.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_plotting_plot_choose_a_colormap.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -27,7 +27,7 @@ and how to add them to your own plots.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-21
 
-.. code-block:: default
+.. code-block:: Python
 
     print(__doc__)
 
@@ -56,7 +56,7 @@ We use a helper function from matplotlib to plot this.
 
 .. GENERATED FROM PYTHON SOURCE LINES 26-58
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Setup some helper functions and ranges to visualize our colormaps, from matplotlib
@@ -107,7 +107,7 @@ possible.
 
 .. GENERATED FROM PYTHON SOURCE LINES 64-70
 
-.. code-block:: default
+.. code-block:: Python
 
 
     plot_color_gradients(
@@ -136,7 +136,7 @@ the lightness value increases monotonically through the colormaps.
 
 .. GENERATED FROM PYTHON SOURCE LINES 75-85
 
-.. code-block:: default
+.. code-block:: Python
 
     plot_color_gradients(
         "Sequential",
@@ -169,7 +169,7 @@ values. This is when the 0 value is meaningful (ex. velocity)
 
 .. GENERATED FROM PYTHON SOURCE LINES 90-111
 
-.. code-block:: default
+.. code-block:: Python
 
     plot_color_gradients(
         "Diverging",
@@ -214,7 +214,7 @@ reflectivity field
 
 .. GENERATED FROM PYTHON SOURCE LINES 117-141
 
-.. code-block:: default
+.. code-block:: Python
 
     plot_color_gradients(
         "Field-specific ",
@@ -261,7 +261,7 @@ compare to a colormap from matplotlib, starting with the matplotlib example.
 
 .. GENERATED FROM PYTHON SOURCE LINES 146-157
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Read in a sample cfradial file
@@ -297,7 +297,7 @@ Setup a display to plot the data
 
 .. GENERATED FROM PYTHON SOURCE LINES 164-171
 
-.. code-block:: default
+.. code-block:: Python
 
 
     display = pyart.graph.RadarDisplay(radar)
@@ -321,7 +321,7 @@ Setup a display to plot the data
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  2.757 seconds)
+   **Total running time of the script:** (0 minutes 1.965 seconds)
 
 
 .. _sphx_glr_download_examples_plotting_plot_choose_a_colormap.py:
@@ -330,14 +330,13 @@ Setup a display to plot the data
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_choose_a_colormap.ipynb <plot_choose_a_colormap.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_choose_a_colormap.py <plot_choose_a_colormap.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_choose_a_colormap.ipynb <plot_choose_a_colormap.ipynb>`
 
 
 .. only:: html

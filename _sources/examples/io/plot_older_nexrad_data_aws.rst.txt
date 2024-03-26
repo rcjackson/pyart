@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_io_plot_older_nexrad_data_aws.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_io_plot_older_nexrad_data_aws.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -27,7 +27,7 @@ to 2008 that are missing some coordinate metadata.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-16
 
-.. code-block:: default
+.. code-block:: Python
 
     print(__doc__)
 
@@ -48,7 +48,7 @@ Import our required packages.
 
 .. GENERATED FROM PYTHON SOURCE LINES 18-24
 
-.. code-block:: default
+.. code-block:: Python
 
 
     import cartopy.crs as ccrs
@@ -83,7 +83,7 @@ on July 24, 2006, at 0203:38 UTC. This means our path would look like this:
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-47
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Note: Older files do not contain the 'V06' but instead '.gz' in the AWS path.
@@ -105,7 +105,7 @@ We can use the **pyart.io.read_nexrad_archive** module to access our data, passi
 
 .. GENERATED FROM PYTHON SOURCE LINES 49-52
 
-.. code-block:: default
+.. code-block:: Python
 
 
     radar = pyart.io.read_nexrad_archive(aws_nexrad_level2_file)
@@ -130,7 +130,7 @@ Now let us take a look at the radar latitude and longitude data.
 
 .. GENERATED FROM PYTHON SOURCE LINES 54-57
 
-.. code-block:: default
+.. code-block:: Python
 
     print(radar.latitude["data"])
     print(radar.longitude["data"])
@@ -159,7 +159,7 @@ pull the coordinate information from a dictionary found within Py-ART.
 
 .. GENERATED FROM PYTHON SOURCE LINES 63-66
 
-.. code-block:: default
+.. code-block:: Python
 
 
     radar = pyart.io.read_nexrad_archive(aws_nexrad_level2_file, station="KHNX")
@@ -167,13 +167,6 @@ pull the coordinate information from a dictionary found within Py-ART.
 
 
 
-
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    /home/runner/work/pyart/pyart/pyart/io/nexrad_archive.py:231: UserWarning: Gate spacing is not constant, interpolating data in scans [0, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] for moment REF.
-      warnings.warn(
 
 
 
@@ -184,7 +177,7 @@ Again, let us take a look at the radar latitude and longitude data.
 
 .. GENERATED FROM PYTHON SOURCE LINES 68-71
 
-.. code-block:: default
+.. code-block:: Python
 
     print(radar.latitude["data"])
     print(radar.longitude["data"])
@@ -209,7 +202,7 @@ Everything now looks correct as this is in Handford CA!
 
 .. GENERATED FROM PYTHON SOURCE LINES 73-87
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # We can create a plot as well utilizing Cartopy to see how it looks.
@@ -238,12 +231,10 @@ Everything now looks correct as this is in Handford CA!
 
  .. code-block:: none
 
-    /home/runner/micromamba-root/envs/pyart-docs/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
+    /home/runner/micromamba/envs/pyart-docs/lib/python3.12/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_coastline.zip
       warnings.warn(f'Downloading: {url}', DownloadWarning)
-    /home/runner/micromamba-root/envs/pyart-docs/lib/python3.11/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces_lines.zip
+    /home/runner/micromamba/envs/pyart-docs/lib/python3.12/site-packages/cartopy/io/__init__.py:241: DownloadWarning: Downloading: https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces_lines.zip
       warnings.warn(f'Downloading: {url}', DownloadWarning)
-    /home/runner/micromamba-root/envs/pyart-docs/lib/python3.11/site-packages/shapely/set_operations.py:133: RuntimeWarning: invalid value encountered in intersection
-      return lib.intersection(a, b, **kwargs)
 
 
 
@@ -251,7 +242,7 @@ Everything now looks correct as this is in Handford CA!
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.104 seconds)
+   **Total running time of the script:** (0 minutes 9.231 seconds)
 
 
 .. _sphx_glr_download_examples_io_plot_older_nexrad_data_aws.py:
@@ -260,14 +251,13 @@ Everything now looks correct as this is in Handford CA!
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_older_nexrad_data_aws.ipynb <plot_older_nexrad_data_aws.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_older_nexrad_data_aws.py <plot_older_nexrad_data_aws.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_older_nexrad_data_aws.ipynb <plot_older_nexrad_data_aws.ipynb>`
 
 
 .. only:: html

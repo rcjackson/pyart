@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_plotting_plot_nexrad_image_muted_reflectivity.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_plotting_plot_nexrad_image_muted_reflectivity.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -44,7 +44,7 @@ of regions of melting or mixed precipitation as opposed to heavy snow or heavy r
 
 
 
-.. code-block:: default
+.. code-block:: Python
 
 
     print(__doc__)
@@ -102,7 +102,7 @@ of regions of melting or mixed precipitation as opposed to heavy snow or heavy r
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.261 seconds)
+   **Total running time of the script:** (0 minutes 4.204 seconds)
 
 
 .. _sphx_glr_download_examples_plotting_plot_nexrad_image_muted_reflectivity.py:
@@ -111,14 +111,13 @@ of regions of melting or mixed precipitation as opposed to heavy snow or heavy r
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_nexrad_image_muted_reflectivity.ipynb <plot_nexrad_image_muted_reflectivity.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_nexrad_image_muted_reflectivity.py <plot_nexrad_image_muted_reflectivity.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_nexrad_image_muted_reflectivity.ipynb <plot_nexrad_image_muted_reflectivity.ipynb>`
 
 
 .. only:: html

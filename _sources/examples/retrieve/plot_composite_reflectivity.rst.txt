@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_retrieve_plot_composite_reflectivity.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_retrieve_plot_composite_reflectivity.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -38,7 +38,7 @@ maximum reflectivity across all of the elevations.
 
 
 
-.. code-block:: default
+.. code-block:: Python
 
 
     # Author: Maxwell Grover (mgrover@anl.gov)
@@ -78,7 +78,7 @@ maximum reflectivity across all of the elevations.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  3.792 seconds)
+   **Total running time of the script:** (0 minutes 3.301 seconds)
 
 
 .. _sphx_glr_download_examples_retrieve_plot_composite_reflectivity.py:
@@ -87,14 +87,13 @@ maximum reflectivity across all of the elevations.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_composite_reflectivity.ipynb <plot_composite_reflectivity.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_composite_reflectivity.py <plot_composite_reflectivity.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_composite_reflectivity.ipynb <plot_composite_reflectivity.ipynb>`
 
 
 .. only:: html

@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_plotting_plot_three_panel_gridmapdisplay.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_plotting_plot_three_panel_gridmapdisplay.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -38,7 +38,7 @@ and longitude slice using xarray and a cartopy background.
 
 
 
-.. code-block:: default
+.. code-block:: Python
 
 
     print(__doc__)
@@ -108,7 +108,7 @@ and longitude slice using xarray and a cartopy background.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  11.608 seconds)
+   **Total running time of the script:** (0 minutes 9.702 seconds)
 
 
 .. _sphx_glr_download_examples_plotting_plot_three_panel_gridmapdisplay.py:
@@ -117,14 +117,13 @@ and longitude slice using xarray and a cartopy background.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_three_panel_gridmapdisplay.ipynb <plot_three_panel_gridmapdisplay.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_three_panel_gridmapdisplay.py <plot_three_panel_gridmapdisplay.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_three_panel_gridmapdisplay.ipynb <plot_three_panel_gridmapdisplay.ipynb>`
 
 
 .. only:: html

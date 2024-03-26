@@ -15,6 +15,8 @@
 .. autosummary::
     :toctree: .
     
+    ZtoR
+    
     calculate_snr_from_reflectivity
     
     calculate_velocity_texture
@@ -29,7 +31,11 @@
     
     compute_snr
     
+    conv_strat_raut
+    
     conv_strat_yuter
+    
+    create_cfad
     
     dealias_spectra
     
@@ -46,6 +52,8 @@
     est_rain_rate_zkdp
     
     est_rain_rate_zpoly
+    
+    feature_detection
     
     fetch_radar_time_profile
     

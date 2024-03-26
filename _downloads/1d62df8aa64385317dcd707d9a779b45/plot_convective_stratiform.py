@@ -21,7 +21,7 @@ import pyart
 
 ######################################
 # How the algorithm works
-# ----------
+# -----------------------
 # This first section describes how the convective-stratiform algorithm works (see references for full details). This
 # algorithm is a feature detection algorithm and classifies fields as "convective" or "stratiform". The algorithm is
 # designed to detect features in a reflectivity field but can also detect features in fields such as rain rate or
@@ -50,14 +50,19 @@ import pyart
 # ``always_core_thres`` > ``zero_diff_cos_val`` then all values greater than ``zero_diff_cos_val`` will be considered a
 # convective core. We plot some examples of the schemes below:
 
-# plot cosine scheme
+######################################
+# Example of the cosine scheme:
 pyart.graph.plot_convstrat_scheme(
     always_core_thres=30, use_cosine=True, max_diff=5, zero_diff_cos_val=45
 )
+
+######################################
 # when zero_diff_cos_val is greater than always_core_thres, the difference becomes zero at the zero_diff_cos_val
 pyart.graph.plot_convstrat_scheme(
     always_core_thres=55, use_cosine=True, max_diff=5, zero_diff_cos_val=45
 )
+
+######################################
 # alternatively, we can use a simpler scalar difference instead of a cosine scheme
 pyart.graph.plot_convstrat_scheme(
     always_core_thres=40,
@@ -67,6 +72,8 @@ pyart.graph.plot_convstrat_scheme(
     use_addition=True,
     scalar_diff=2,
 )
+
+######################################
 # if you are interested in picking up weak features, you can also use the scalar difference as a multiplier instead,
 # so very weak features do not have to be that different from the background to be classified as convective.
 pyart.graph.plot_convstrat_scheme(
@@ -135,13 +142,13 @@ convsf_dict = pyart.retrieve.conv_strat_yuter(
 
 # add to grid object
 # mask zero values (no surface echo)
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_detection"]["data"], 0)
 # mask 3 values (weak echo)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
 # add dimension to array to add to grid object
-convsf_dict["convsf"]["data"] = convsf_masked[None, :, :]
+convsf_dict["feature_detection"]["data"] = convsf_masked
 # add field
-grid.add_field("convsf", convsf_dict["convsf"], replace_existing=True)
+grid.add_field("convsf", convsf_dict["feature_detection"], replace_existing=True)
 
 # create plot using GridMapDisplay
 # plot variables
@@ -154,11 +161,6 @@ projection = ccrs.AlbersEqualArea(
     central_latitude=radar.latitude["data"][0],
     central_longitude=radar.longitude["data"][0],
 )
-######################################
-# Note how the convective stratiform field has less data around the edges compared to the reflectivity
-# field. This is because the function is designed to only compute the background radius where the footprint has 75%
-# of data, so along the edges there is not enough data to fulfill this requirement. The footprint percentage can be
-# changed using the variable ``calc_thres``.
 
 # plot
 plt.figure(figsize=(10, 4))
@@ -193,23 +195,23 @@ plt.show()
 # ``estimate_flag=False``), but we recommend keeping it turned on.
 
 # mask weak echo and no surface echo
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_detection"]["data"], 0)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
-convsf_dict["convsf"]["data"] = convsf_masked
+convsf_dict["feature_detection"]["data"] = convsf_masked
 # underest.
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf_under"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_under"]["data"], 0)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
-convsf_dict["convsf_under"]["data"] = convsf_masked
+convsf_dict["feature_under"]["data"] = convsf_masked
 # overest.
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf_over"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_over"]["data"], 0)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
-convsf_dict["convsf_over"]["data"] = convsf_masked
+convsf_dict["feature_over"]["data"] = convsf_masked
 
 # Plot each estimation
 plt.figure(figsize=(10, 4))
 ax1 = plt.subplot(131)
 ax1.pcolormesh(
-    convsf_dict["convsf"]["data"][0, :, :],
+    convsf_dict["feature_detection"]["data"][0, :, :],
     vmin=0,
     vmax=2,
     cmap=plt.get_cmap("viridis", 3),
@@ -218,13 +220,19 @@ ax1.set_title("Best estimate")
 ax1.set_aspect("equal")
 ax2 = plt.subplot(132)
 ax2.pcolormesh(
-    convsf_dict["convsf_under"]["data"], vmin=0, vmax=2, cmap=plt.get_cmap("viridis", 3)
+    convsf_dict["feature_under"]["data"][0, :, :],
+    vmin=0,
+    vmax=2,
+    cmap=plt.get_cmap("viridis", 3),
 )
 ax2.set_title("Underestimate")
 ax2.set_aspect("equal")
 ax3 = plt.subplot(133)
 ax3.pcolormesh(
-    convsf_dict["convsf_over"]["data"], vmin=0, vmax=2, cmap=plt.get_cmap("viridis", 3)
+    convsf_dict["feature_over"]["data"][0, :, :],
+    vmin=0,
+    vmax=2,
+    cmap=plt.get_cmap("viridis", 3),
 )
 ax3.set_title("Overestimate")
 ax3.set_aspect("equal")
@@ -272,13 +280,13 @@ convsf_dict = pyart.retrieve.conv_strat_yuter(
 
 # add to grid object
 # mask zero values (no surface echo)
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_detection"]["data"], 0)
 # mask 3 values (weak echo)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
 # add dimension to array to add to grid object
-convsf_dict["convsf"]["data"] = convsf_masked[None, :, :]
+convsf_dict["feature_detection"]["data"] = convsf_masked
 # add field
-grid.add_field("convsf", convsf_dict["convsf"], replace_existing=True)
+grid.add_field("convsf", convsf_dict["feature_detection"], replace_existing=True)
 
 # create plot using GridMapDisplay
 # plot variables
@@ -391,13 +399,13 @@ convsf_dict = pyart.retrieve.conv_strat_yuter(
 
 # add to grid object
 # mask zero values (no surface echo)
-convsf_masked = np.ma.masked_equal(convsf_dict["convsf"]["data"], 0)
+convsf_masked = np.ma.masked_equal(convsf_dict["feature_detection"]["data"], 0)
 # mask 3 values (weak echo)
 convsf_masked = np.ma.masked_equal(convsf_masked, 3)
 # add dimension to array to add to grid object
-convsf_dict["convsf"]["data"] = convsf_masked[None, :, :]
+convsf_dict["feature_detection"]["data"] = convsf_masked
 # add field
-grid.add_field("convsf", convsf_dict["convsf"], replace_existing=True)
+grid.add_field("convsf", convsf_dict["feature_detection"], replace_existing=True)
 
 # create plot using GridMapDisplay
 # plot variables
@@ -438,7 +446,7 @@ plt.show()
 
 ######################################
 # Summary of recommendations and best practices
-# ----------
+# ---------------------------------------------
 # * Tune your parameters to your specific purpose
 # * Use a rescaled field if possible (i.e. linear reflectivity, rain or snow rate)
 # * Keep ``estimate_flag=True`` to see uncertainty in classification

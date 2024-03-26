@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_io_plot_nexrad_data_aws.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_io_plot_nexrad_data_aws.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -27,7 +27,7 @@ and plot quick looks of the datasets.
 
 .. GENERATED FROM PYTHON SOURCE LINES 10-20
 
-.. code-block:: default
+.. code-block:: Python
 
     print(__doc__)
 
@@ -63,7 +63,7 @@ on March 22, 2022, at 1201:25 UTC. This means our path would look like:
 
 .. GENERATED FROM PYTHON SOURCE LINES 33-38
 
-.. code-block:: default
+.. code-block:: Python
 
 
     aws_nexrad_level2_file = (
@@ -83,7 +83,7 @@ We can use the **pyart.io.read_nexrad_archive** module to access our data, passi
 
 .. GENERATED FROM PYTHON SOURCE LINES 40-43
 
-.. code-block:: default
+.. code-block:: Python
 
 
     radar = pyart.io.read_nexrad_archive(aws_nexrad_level2_file)
@@ -101,7 +101,7 @@ Let's take a look at a summary of what fields are available.
 
 .. GENERATED FROM PYTHON SOURCE LINES 45-48
 
-.. code-block:: default
+.. code-block:: Python
 
 
     list(radar.fields)
@@ -115,7 +115,7 @@ Let's take a look at a summary of what fields are available.
  .. code-block:: none
 
 
-    ['differential_reflectivity', 'velocity', 'cross_correlation_ratio', 'spectrum_width', 'clutter_filter_power_removed', 'reflectivity', 'differential_phase']
+    ['clutter_filter_power_removed', 'differential_reflectivity', 'spectrum_width', 'velocity', 'reflectivity', 'cross_correlation_ratio', 'differential_phase']
 
 
 
@@ -127,7 +127,7 @@ Note: the reflectivity and velocity fields are in different sweeps, so we will n
 
 .. GENERATED FROM PYTHON SOURCE LINES 52-78
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig = plt.figure(figsize=(12, 4))
@@ -194,7 +194,7 @@ For example, we can look at data from that same time as the NEXRAD Level 2 data 
 
 .. GENERATED FROM PYTHON SOURCE LINES 100-108
 
-.. code-block:: default
+.. code-block:: Python
 
 
     aws_nexrad_level3_velocity_file = (
@@ -217,7 +217,7 @@ Read our Data using **pyart.io.read_nexrad_level3**
 
 .. GENERATED FROM PYTHON SOURCE LINES 110-116
 
-.. code-block:: default
+.. code-block:: Python
 
 
     radar_level3_velocity = pyart.io.read_nexrad_level3(aws_nexrad_level3_velocity_file)
@@ -238,7 +238,7 @@ Let's confirm that each radar object has a single field:
 
 .. GENERATED FROM PYTHON SOURCE LINES 118-126
 
-.. code-block:: default
+.. code-block:: Python
 
 
     print(
@@ -271,7 +271,7 @@ Note: the reflectivity and velocity fields are in different radars, so we need t
 
 .. GENERATED FROM PYTHON SOURCE LINES 132-157
 
-.. code-block:: default
+.. code-block:: Python
 
 
     fig = plt.figure(figsize=(12, 4))
@@ -313,7 +313,7 @@ Note: the reflectivity and velocity fields are in different radars, so we need t
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  20.254 seconds)
+   **Total running time of the script:** (0 minutes 15.084 seconds)
 
 
 .. _sphx_glr_download_examples_io_plot_nexrad_data_aws.py:
@@ -322,14 +322,13 @@ Note: the reflectivity and velocity fields are in different radars, so we need t
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_nexrad_data_aws.ipynb <plot_nexrad_data_aws.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_nexrad_data_aws.py <plot_nexrad_data_aws.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_nexrad_data_aws.ipynb <plot_nexrad_data_aws.ipynb>`
 
 
 .. only:: html

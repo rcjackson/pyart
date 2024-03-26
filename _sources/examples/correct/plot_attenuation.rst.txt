@@ -10,7 +10,7 @@
     .. note::
         :class: sphx-glr-download-link-note
 
-        Click :ref:`here <sphx_glr_download_examples_correct_plot_attenuation.py>`
+        :ref:`Go to the end <sphx_glr_download_examples_correct_plot_attenuation.py>`
         to download the full example code
 
 .. rst-class:: sphx-glr-example-title
@@ -40,7 +40,7 @@ for a polarimetric radar using a Z-PHI method implemented in Py-ART.
  .. code-block:: none
 
 
-    /home/runner/micromamba-root/envs/pyart-docs/lib/python3.11/site-packages/numpy/core/fromnumeric.py:784: UserWarning: Warning: 'partition' will ignore the 'mask' of the MaskedArray.
+    /home/runner/micromamba/envs/pyart-docs/lib/python3.12/site-packages/numpy/core/fromnumeric.py:771: UserWarning: Warning: 'partition' will ignore the 'mask' of the MaskedArray.
       a.partition(kth, axis=axis, kind=kind, order=order)
 
 
@@ -50,7 +50,7 @@ for a polarimetric radar using a Z-PHI method implemented in Py-ART.
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
     print(__doc__)
 
@@ -125,7 +125,7 @@ for a polarimetric radar using a Z-PHI method implemented in Py-ART.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  12.112 seconds)
+   **Total running time of the script:** (0 minutes 9.609 seconds)
 
 
 .. _sphx_glr_download_examples_correct_plot_attenuation.py:
@@ -134,14 +134,13 @@ for a polarimetric radar using a Z-PHI method implemented in Py-ART.
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download Jupyter notebook: plot_attenuation.ipynb <plot_attenuation.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_attenuation.py <plot_attenuation.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_attenuation.ipynb <plot_attenuation.ipynb>`
 
 
 .. only:: html
