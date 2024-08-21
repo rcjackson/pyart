@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_examples_retrieve_plot_feature_detection.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -999,7 +999,7 @@ https://doi.org/10.5194/amt-15-5515-2022
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 25.505 seconds)
+   **Total running time of the script:** (0 minutes 26.111 seconds)
 
 
 .. _sphx_glr_download_examples_retrieve_plot_feature_detection.py:
@@ -1015,6 +1015,10 @@ https://doi.org/10.5194/amt-15-5515-2022
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_feature_detection.py <plot_feature_detection.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_feature_detection.zip <plot_feature_detection.zip>`
 
 
 .. only:: html

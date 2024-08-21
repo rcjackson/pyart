@@ -11,7 +11,7 @@
         :class: sphx-glr-download-link-note
 
         :ref:`Go to the end <sphx_glr_download_examples_correct_plot_dealias.py>`
-        to download the full example code
+        to download the full example code.
 
 .. rst-class:: sphx-glr-example-title
 
@@ -123,7 +123,7 @@ using the region-based dealiasing algorithm in Py-ART.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 59.672 seconds)
+   **Total running time of the script:** (1 minutes 2.023 seconds)
 
 
 .. _sphx_glr_download_examples_correct_plot_dealias.py:
@@ -139,6 +139,10 @@ using the region-based dealiasing algorithm in Py-ART.
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_dealias.py <plot_dealias.py>`
+
+    .. container:: sphx-glr-download sphx-glr-download-zip
+
+      :download:`Download zipped: plot_dealias.zip <plot_dealias.zip>`
 
 
 .. only:: html
