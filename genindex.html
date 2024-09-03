@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Py-ART 1.8.0.post1111 documentation</title>
+    <title>Index &#8212; Py-ART 1.8.0 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=f525240f"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=9764bf3a"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
     <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -136,7 +136,7 @@
   
   
   
-    <p class="title logo__title">Py-ART 1.8.0.post1111 documentation</p>
+    <p class="title logo__title">Py-ART 1.8.0 documentation</p>
   
 </a></div>
     
@@ -179,8 +179,8 @@
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="notebook-gallery.html">
-    Notebook Gallery
+  <a class="nav-link nav-internal" href="blog.html">
+    Blog
   </a>
 </li>
 
@@ -191,15 +191,15 @@
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
 <li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="blog.html">
-    Blog
+  <a class="nav-link dropdown-item nav-internal" href="notebook-gallery.html">
+    Notebook Gallery
   </a>
 </li>
 
 
 <li class=" ">
-  <a class="nav-link dropdown-item nav-internal" href="changelog.html">
-    Changelog
+  <a class="nav-link dropdown-item nav-external" href="https://github.com/ARM-DOE/pyart/releases">
+    Release Notes
   </a>
 </li>
 
@@ -345,13 +345,6 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="notebook-gallery.html">
-    Notebook Gallery
-  </a>
-</li>
-
-
-<li class="nav-item ">
   <a class="nav-link nav-internal" href="blog.html">
     Blog
   </a>
@@ -359,8 +352,15 @@ document.write(`
 
 
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="changelog.html">
-    Changelog
+  <a class="nav-link nav-internal" href="notebook-gallery.html">
+    Notebook Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://github.com/ARM-DOE/pyart/releases">
+    Release Notes
   </a>
 </li>
 
@@ -543,6 +543,12 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="API/generated/pyart.correct.calc_cloud_mask.html#pyart.correct.calc_cloud_mask">calc_cloud_mask() (in module pyart.correct)</a>
+</li>
+      <li><a href="API/generated/pyart.correct.calc_noise_floor.html#pyart.correct.calc_noise_floor">calc_noise_floor() (in module pyart.correct)</a>
+</li>
+      <li><a href="API/generated/pyart.correct.calc_zdr_offset.html#pyart.correct.calc_zdr_offset">calc_zdr_offset() (in module pyart.correct)</a>
+</li>
       <li><a href="API/generated/pyart.correct.calculate_attenuation.html#pyart.correct.calculate_attenuation">calculate_attenuation() (in module pyart.correct)</a>
 </li>
       <li><a href="API/generated/pyart.correct.calculate_attenuation_philinear.html#pyart.correct.calculate_attenuation_philinear">calculate_attenuation_philinear() (in module pyart.correct)</a>
@@ -552,6 +558,8 @@ document.write(`
       <li><a href="API/generated/pyart.retrieve.calculate_snr_from_reflectivity.html#pyart.retrieve.calculate_snr_from_reflectivity">calculate_snr_from_reflectivity() (in module pyart.retrieve)</a>
 </li>
       <li><a href="API/generated/pyart.retrieve.calculate_velocity_texture.html#pyart.retrieve.calculate_velocity_texture">calculate_velocity_texture() (in module pyart.retrieve)</a>
+</li>
+      <li><a href="API/generated/pyart.core.cartesian_to_antenna.html#pyart.core.cartesian_to_antenna">cartesian_to_antenna() (in module pyart.core)</a>
 </li>
       <li><a href="API/generated/pyart.core.cartesian_to_geographic.html#pyart.core.cartesian_to_geographic">cartesian_to_geographic() (in module pyart.core)</a>
 </li>
@@ -583,6 +591,8 @@ document.write(`
         <li><a href="API/generated/pyart.lazydict.MutableMapping.clear.html#pyart.lazydict.MutableMapping.clear">(pyart.lazydict.MutableMapping method)</a>
 </li>
       </ul></li>
+      <li><a href="API/generated/pyart.correct.cloud_threshold.html#pyart.correct.cloud_threshold">cloud_threshold() (in module pyart.correct)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="API/generated/pyart.util.column_vertical_profile.html#pyart.util.column_vertical_profile">column_vertical_profile() (in module pyart.util)</a>
@@ -591,11 +601,25 @@ document.write(`
 </li>
       <li><a href="API/generated/pyart.retrieve.compute_cdr.html#pyart.retrieve.compute_cdr">compute_cdr() (in module pyart.retrieve)</a>
 </li>
+      <li><a href="API/generated/pyart.util.compute_directional_stats.html#pyart.util.compute_directional_stats">compute_directional_stats() (in module pyart.util)</a>
+</li>
+      <li><a href="API/generated/pyart.retrieve.compute_evp.html#pyart.retrieve.compute_evp">compute_evp() (in module pyart.retrieve)</a>
+</li>
       <li><a href="API/generated/pyart.retrieve.compute_l.html#pyart.retrieve.compute_l">compute_l() (in module pyart.retrieve)</a>
 </li>
       <li><a href="API/generated/pyart.retrieve.compute_noisedBZ.html#pyart.retrieve.compute_noisedBZ">compute_noisedBZ() (in module pyart.retrieve)</a>
 </li>
+      <li><a href="API/generated/pyart.retrieve.compute_qvp.html#pyart.retrieve.compute_qvp">compute_qvp() (in module pyart.retrieve)</a>
+</li>
+      <li><a href="API/generated/pyart.retrieve.compute_rqvp.html#pyart.retrieve.compute_rqvp">compute_rqvp() (in module pyart.retrieve)</a>
+</li>
       <li><a href="API/generated/pyart.retrieve.compute_snr.html#pyart.retrieve.compute_snr">compute_snr() (in module pyart.retrieve)</a>
+</li>
+      <li><a href="API/generated/pyart.retrieve.compute_svp.html#pyart.retrieve.compute_svp">compute_svp() (in module pyart.retrieve)</a>
+</li>
+      <li><a href="API/generated/pyart.retrieve.compute_ts_along_coord.html#pyart.retrieve.compute_ts_along_coord">compute_ts_along_coord() (in module pyart.retrieve)</a>
+</li>
+      <li><a href="API/generated/pyart.retrieve.compute_vp.html#pyart.retrieve.compute_vp">compute_vp() (in module pyart.retrieve)</a>
 </li>
       <li><a href="API/generated/pyart.retrieve.conv_strat_raut.html#pyart.retrieve.conv_strat_raut">conv_strat_raut() (in module pyart.retrieve)</a>
 </li>
@@ -1475,6 +1499,8 @@ document.write(`
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="API/generated/pyart.util.ma_broadcast_to.html#pyart.util.ma_broadcast_to">ma_broadcast_to() (in module pyart.util)</a>
+</li>
       <li><a href="API/generated/pyart.testing.make_empty_grid.html#pyart.testing.make_empty_grid">make_empty_grid() (in module pyart.testing)</a>
 </li>
       <li><a href="API/generated/pyart.testing.make_empty_ppi_radar.html#pyart.testing.make_empty_ppi_radar">make_empty_ppi_radar() (in module pyart.testing)</a>
@@ -1740,6 +1766,12 @@ document.write(`
         <li><a href="API/generated/pyart.graph.GridMapDisplayBasemap.plot_longitudinal_level.html#pyart.graph.GridMapDisplayBasemap.plot_longitudinal_level">(pyart.graph.GridMapDisplayBasemap method)</a>
 </li>
       </ul></li>
+      <li><a href="API/generated/pyart.graph.plot_maxcappi.html#pyart.graph.plot_maxcappi">plot_maxcappi() (in module pyart.graph)</a>
+
+      <ul>
+        <li><a href="API/generated/pyart.graph.GridMapDisplay.plot_maxcappi.html#pyart.graph.GridMapDisplay.plot_maxcappi">(pyart.graph.GridMapDisplay method)</a>
+</li>
+      </ul></li>
       <li><a href="API/generated/pyart.graph.RadarMapDisplay.plot_point.html#pyart.graph.RadarMapDisplay.plot_point">plot_point() (pyart.graph.RadarMapDisplay method)</a>
 
       <ul>
@@ -1978,6 +2010,8 @@ document.write(`
         <li><a href="API/generated/pyart.testing.RadarSpectra.range.html#pyart.testing.RadarSpectra.range">(pyart.testing.RadarSpectra property)</a>
 </li>
       </ul></li>
+      <li><a href="API/generated/pyart.correct.range_correction.html#pyart.correct.range_correction">range_correction() (in module pyart.correct)</a>
+</li>
       <li><a href="API/generated/pyart.core.RadarSpectra.rays_per_sweep.html#pyart.core.RadarSpectra.rays_per_sweep">rays_per_sweep (pyart.core.RadarSpectra property)</a>
 
       <ul>
@@ -2280,7 +2314,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2013-2022, Py-ART developers.
+      © Copyright 2013-2024, Py-ART developers.
       <br/>
     
   </p>
