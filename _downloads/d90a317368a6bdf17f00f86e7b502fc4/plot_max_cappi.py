@@ -36,7 +36,7 @@ gdisplay.plot_maxcappi(field="REF", range_rings=True, add_slogan=True)
 #########################################
 # ** Second Example
 #
-# Let's read in a cfradial file and create a grid.
+# Let's read in a Nexrad data and create a grid.
 
 
 import logging
@@ -106,6 +106,4 @@ grid = pyart.map.grid_from_radars(
 # Create a grid display
 gdisplay = pyart.graph.GridMapDisplay(grid)
 with plt.style.context("dark_background"):
-    gdisplay.plot_maxcappi(
-        field="reflectivity", cmap="pyart_HomeyerRainbow", add_slogan=True
-    )
+    gdisplay.plot_maxcappi(field="reflectivity", cmap="HomeyerRainbow", add_slogan=True)

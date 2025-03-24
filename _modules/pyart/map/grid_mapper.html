@@ -15,19 +15,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -38,10 +40,11 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pyart-theme.css?v=40b48845" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=9764bf3a"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
@@ -49,7 +52,6 @@
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -62,7 +64,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.8" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -85,19 +88,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -105,7 +97,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -113,8 +104,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -192,7 +183,9 @@
 </li>
 
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
@@ -224,29 +217,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -283,15 +268,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -308,7 +289,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -383,15 +365,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -427,9 +405,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -447,8 +430,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -460,7 +441,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyart.map.gr...</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyart.map.grid_mapper</span></li>
   </ul>
 </nav>
 </div>
@@ -482,25 +463,25 @@ document.write(`
 
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">import</span> <span class="nn">netCDF4</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.spatial</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.spatial</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
-<span class="kn">from</span> <span class="nn">..config</span> <span class="kn">import</span> <span class="n">get_fillvalue</span><span class="p">,</span> <span class="n">get_metadata</span>
-<span class="kn">from</span> <span class="nn">..core.grid</span> <span class="kn">import</span> <span class="n">Grid</span>
-<span class="kn">from</span> <span class="nn">..core.radar</span> <span class="kn">import</span> <span class="n">Radar</span>
-<span class="kn">from</span> <span class="nn">..core.transforms</span> <span class="kn">import</span> <span class="n">geographic_to_cartesian</span>
-<span class="kn">from</span> <span class="nn">..filters</span> <span class="kn">import</span> <span class="n">GateFilter</span><span class="p">,</span> <span class="n">moment_based_gate_filter</span>
-<span class="kn">from</span> <span class="nn">..io.common</span> <span class="kn">import</span> <span class="n">make_time_unit_str</span>
-<span class="kn">from</span> <span class="nn">._load_nn_field_data</span> <span class="kn">import</span> <span class="n">_load_nn_field_data</span>
-<span class="kn">from</span> <span class="nn">.ckdtree</span> <span class="kn">import</span> <span class="n">cKDTree</span>
-<span class="kn">from</span> <span class="nn">.gates_to_grid</span> <span class="kn">import</span> <span class="n">map_gates_to_grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_fillvalue</span><span class="p">,</span> <span class="n">get_metadata</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core.radar</span><span class="w"> </span><span class="kn">import</span> <span class="n">Radar</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..core.transforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">geographic_to_cartesian</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..filters</span><span class="w"> </span><span class="kn">import</span> <span class="n">GateFilter</span><span class="p">,</span> <span class="n">moment_based_gate_filter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..io.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_time_unit_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._load_nn_field_data</span><span class="w"> </span><span class="kn">import</span> <span class="n">_load_nn_field_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.ckdtree</span><span class="w"> </span><span class="kn">import</span> <span class="n">cKDTree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.gates_to_grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">map_gates_to_grid</span>
 
 
-<div class="viewcode-block" id="grid_from_radars"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_from_radars.html#pyart.map.grid_from_radars">[docs]</a><span class="k">def</span> <span class="nf">grid_from_radars</span><span class="p">(</span>
+<div class="viewcode-block" id="grid_from_radars"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_from_radars.html#pyart.map.grid_from_radars">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">grid_from_radars</span><span class="p">(</span>
     <span class="n">radars</span><span class="p">,</span>
     <span class="n">grid_shape</span><span class="p">,</span>
     <span class="n">grid_limits</span><span class="p">,</span>
@@ -684,7 +665,7 @@ document.write(`
     <span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_unify_times_for_radars</span><span class="p">(</span><span class="n">radars</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_unify_times_for_radars</span><span class="p">(</span><span class="n">radars</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return unified start times and units for a number of radars.&quot;&quot;&quot;</span>
     <span class="n">dates</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">netCDF4</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">radar</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="s2">&quot;units&quot;</span><span class="p">])</span> <span class="k">for</span> <span class="n">radar</span> <span class="ow">in</span> <span class="n">radars</span>
@@ -694,7 +675,7 @@ document.write(`
     <span class="k">return</span> <span class="n">times</span><span class="p">,</span> <span class="n">units</span>
 
 
-<span class="k">class</span> <span class="nc">NNLocator</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NNLocator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Nearest neighbor locator.</span>
 
@@ -716,7 +697,7 @@ document.write(`
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">leafsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kd_tree&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">leafsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="s2">&quot;kd_tree&quot;</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;initalize.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_algorithm</span> <span class="o">=</span> <span class="n">algorithm</span>
 
@@ -725,7 +706,7 @@ document.write(`
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;invalid algorithm&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">find_neighbors_and_dists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_neighbors_and_dists</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Find all neighbors and distances within a given distance.</span>
 
@@ -753,7 +734,7 @@ document.write(`
             <span class="k">return</span> <span class="n">ind</span><span class="p">,</span> <span class="n">dist</span>
 
 
-<div class="viewcode-block" id="map_to_grid"><a class="viewcode-back" href="../../../API/generated/pyart.map.map_to_grid.html#pyart.map.map_to_grid">[docs]</a><span class="k">def</span> <span class="nf">map_to_grid</span><span class="p">(</span>
+<div class="viewcode-block" id="map_to_grid"><a class="viewcode-back" href="../../../API/generated/pyart.map.map_to_grid.html#pyart.map.map_to_grid">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">map_to_grid</span><span class="p">(</span>
     <span class="n">radars</span><span class="p">,</span>
     <span class="n">grid_shape</span><span class="p">,</span>
     <span class="n">grid_limits</span><span class="p">,</span>
@@ -960,19 +941,19 @@ document.write(`
 
     <span class="c1"># find the grid origin if not given</span>
     <span class="k">if</span> <span class="n">grid_origin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
-            <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="nb">len</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">lat</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+            <span class="n">lon</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
             <span class="n">lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
         <span class="n">grid_origin</span> <span class="o">=</span> <span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
     <span class="n">grid_origin_lat</span><span class="p">,</span> <span class="n">grid_origin_lon</span> <span class="o">=</span> <span class="n">grid_origin</span>
 
     <span class="k">if</span> <span class="n">grid_origin_alt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">grid_origin_alt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">grid_origin_alt</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">grid_origin_alt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">radars</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
 
     <span class="c1"># fields which should be mapped, None for fields which are in all radars</span>
@@ -1023,10 +1004,15 @@ document.write(`
         <span class="n">x_disp</span><span class="p">,</span> <span class="n">y_disp</span> <span class="o">=</span> <span class="n">geographic_to_cartesian</span><span class="p">(</span>
             <span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">projparams</span>
         <span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">z_disp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="n">grid_origin_alt</span>
-            <span class="n">offsets</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">z_disp</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">y_disp</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">x_disp</span><span class="p">)))</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">latitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+            <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">longitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+            <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;</span> <span class="nb">len</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span>
+            <span class="o">==</span> <span class="mi">1</span>
+        <span class="p">):</span>
+            <span class="n">z_disp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="o">-</span> <span class="n">grid_origin_alt</span>
+            <span class="n">offsets</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">z_disp</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">y_disp</span><span class="o">.</span><span class="n">item</span><span class="p">()),</span> <span class="nb">float</span><span class="p">(</span><span class="n">x_disp</span><span class="o">.</span><span class="n">item</span><span class="p">())))</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="n">z_disp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">altitude</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">])</span> <span class="o">-</span> <span class="n">grid_origin_alt</span>
             <span class="n">offsets</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">z_disp</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_disp</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_disp</span><span class="p">)))</span>
 
@@ -1217,7 +1203,7 @@ document.write(`
 <span class="c1"># Radius of Influence (RoI) functions</span>
 
 
-<div class="viewcode-block" id="example_roi_func_constant"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_constant.html#pyart.map.example_roi_func_constant">[docs]</a><span class="k">def</span> <span class="nf">example_roi_func_constant</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+<div class="viewcode-block" id="example_roi_func_constant"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_constant.html#pyart.map.example_roi_func_constant">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">example_roi_func_constant</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Example RoI function which returns a constant radius.</span>
 
@@ -1236,21 +1222,21 @@ document.write(`
     <span class="k">return</span> <span class="n">constant</span></div>
 
 
-<span class="k">def</span> <span class="nf">_gen_roi_func_constant</span><span class="p">(</span><span class="n">constant_roi</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_gen_roi_func_constant</span><span class="p">(</span><span class="n">constant_roi</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a RoI function which returns a constant radius.</span>
 
 <span class="sd">    See :py:func:`map_to_grid` for a description of the parameters.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;constant radius of influence function.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">constant_roi</span>
 
     <span class="k">return</span> <span class="n">roi</span>
 
 
-<div class="viewcode-block" id="example_roi_func_dist"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_dist.html#pyart.map.example_roi_func_dist">[docs]</a><span class="k">def</span> <span class="nf">example_roi_func_dist</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+<div class="viewcode-block" id="example_roi_func_dist"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_dist.html#pyart.map.example_roi_func_dist">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">example_roi_func_dist</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Example RoI function which returns a radius which grows with distance.</span>
 
@@ -1282,7 +1268,7 @@ document.write(`
     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_gen_roi_func_dist</span><span class="p">(</span><span class="n">z_factor</span><span class="p">,</span> <span class="n">xy_factor</span><span class="p">,</span> <span class="n">min_radius</span><span class="p">,</span> <span class="n">offsets</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_gen_roi_func_dist</span><span class="p">(</span><span class="n">z_factor</span><span class="p">,</span> <span class="n">xy_factor</span><span class="p">,</span> <span class="n">min_radius</span><span class="p">,</span> <span class="n">offsets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a RoI function whose radius grows with distance.</span>
 
@@ -1293,7 +1279,7 @@ document.write(`
     <span class="n">yg_off</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">xg_off</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;dist radius of influence function.&quot;&quot;&quot;</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
             <span class="n">z_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">zg</span> <span class="o">-</span> <span class="n">zg_off</span><span class="p">)</span>
@@ -1305,7 +1291,7 @@ document.write(`
     <span class="k">return</span> <span class="n">roi</span>
 
 
-<div class="viewcode-block" id="example_roi_func_dist_beam"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_dist_beam.html#pyart.map.example_roi_func_dist_beam">[docs]</a><span class="k">def</span> <span class="nf">example_roi_func_dist_beam</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+<div class="viewcode-block" id="example_roi_func_dist_beam"><a class="viewcode-back" href="../../../API/generated/pyart.map.example_roi_func_dist_beam.html#pyart.map.example_roi_func_dist_beam">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">example_roi_func_dist_beam</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Example RoI function which returns a radius which grows with distance</span>
 <span class="sd">    and whose parameters are based on virtual beam size.</span>
@@ -1340,7 +1326,7 @@ document.write(`
     <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">r</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">_gen_roi_func_dist_beam</span><span class="p">(</span><span class="n">h_factor</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">bsp</span><span class="p">,</span> <span class="n">min_radius</span><span class="p">,</span> <span class="n">offsets</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_gen_roi_func_dist_beam</span><span class="p">(</span><span class="n">h_factor</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">bsp</span><span class="p">,</span> <span class="n">min_radius</span><span class="p">,</span> <span class="n">offsets</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a RoI function whose radius which grows with distance</span>
 <span class="sd">    and whose parameters are based on virtual beam size.</span>
@@ -1352,7 +1338,7 @@ document.write(`
     <span class="n">yg_off</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">xg_off</span> <span class="o">=</span> <span class="n">offsets</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">roi</span><span class="p">(</span><span class="n">zg</span><span class="p">,</span> <span class="n">yg</span><span class="p">,</span> <span class="n">xg</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;dist_beam radius of influence function.&quot;&quot;&quot;</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
             <span class="n">h_factor</span> <span class="o">*</span> <span class="p">((</span><span class="n">zg</span> <span class="o">-</span> <span class="n">zg_off</span><span class="p">)</span> <span class="o">/</span> <span class="mf">20.0</span><span class="p">)</span>
@@ -1365,7 +1351,7 @@ document.write(`
     <span class="k">return</span> <span class="n">roi</span>
 
 
-<div class="viewcode-block" id="grid_ppi_sweeps"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_ppi_sweeps.html#pyart.map.grid_ppi_sweeps">[docs]</a><span class="k">def</span> <span class="nf">grid_ppi_sweeps</span><span class="p">(</span>
+<div class="viewcode-block" id="grid_ppi_sweeps"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_ppi_sweeps.html#pyart.map.grid_ppi_sweeps">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">grid_ppi_sweeps</span><span class="p">(</span>
     <span class="n">radar</span><span class="p">,</span>
     <span class="n">target_sweeps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">grid_size</span><span class="o">=</span><span class="mi">801</span><span class="p">,</span>
@@ -1397,7 +1383,7 @@ document.write(`
 <span class="sd">        if &#39;auto&#39; using the maximum horizontal range rounded up to the nearest kilometer</span>
 <span class="sd">        and limiting vertically up to `max_z`.</span>
 <span class="sd">    max_z: float</span>
-<span class="sd">        maximum height to consider in gridding (only used if `grid_size` is &#39;auto&#39;)</span>
+<span class="sd">        maximum height to consider in gridding (only used if `grid_limits` is &#39;auto&#39;)</span>
 <span class="sd">    el_rounding_frac: float</span>
 <span class="sd">        A fraction for rounding the elevation elements. This variables is also used to</span>
 <span class="sd">        represent the sweep for altitude estimation.</span>
@@ -1439,6 +1425,11 @@ document.write(`
 
     <span class="c1"># Calling the gridding method</span>
     <span class="n">radar_ds</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Use all sweeps if no target sweep is provided</span>
+    <span class="k">if</span> <span class="n">target_sweeps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target_sweeps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">nsweeps</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">sweep</span> <span class="ow">in</span> <span class="n">target_sweeps</span><span class="p">:</span>
         <span class="n">radar_sw</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">extract_sweeps</span><span class="p">([</span><span class="n">sweep</span><span class="p">])</span>
         <span class="n">sweep_grid</span> <span class="o">=</span> <span class="n">grid_from_radars</span><span class="p">(</span>
@@ -1478,7 +1469,7 @@ document.write(`
     <span class="k">return</span> <span class="n">radar_ds</span></div>
 
 
-<div class="viewcode-block" id="grid_rhi_sweeps"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_rhi_sweeps.html#pyart.map.grid_rhi_sweeps">[docs]</a><span class="k">def</span> <span class="nf">grid_rhi_sweeps</span><span class="p">(</span>
+<div class="viewcode-block" id="grid_rhi_sweeps"><a class="viewcode-back" href="../../../API/generated/pyart.map.grid_rhi_sweeps.html#pyart.map.grid_rhi_sweeps">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">grid_rhi_sweeps</span><span class="p">(</span>
     <span class="n">radar</span><span class="p">,</span>
     <span class="n">target_sweeps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">grid_size</span><span class="o">=</span><span class="mi">801</span><span class="p">,</span>
@@ -1506,7 +1497,7 @@ document.write(`
 <span class="sd">        This input parameter is ignored if `grid_shape` is given</span>
 <span class="sd">        explicitly via kwargs.</span>
 <span class="sd">    max_z: float</span>
-<span class="sd">        maximum height in grid (only used if `grid_size` is &#39;auto&#39;).</span>
+<span class="sd">        maximum height in grid (only used if `grid_limits` is &#39;auto&#39;).</span>
 <span class="sd">    grid_limits: 3-tuple with 2-tuple elements or &#39;auto&#39;</span>
 <span class="sd">        if &#39;auto&#39; using the maximum horizontal range and limiting vertically up to 12 km.</span>
 <span class="sd">    az_rounding_frac: float</span>
@@ -1546,6 +1537,11 @@ document.write(`
 
     <span class="c1"># Calling the gridding method</span>
     <span class="n">radar_ds</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Use all sweeps if no target sweep is provided</span>
+    <span class="k">if</span> <span class="n">target_sweeps</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target_sweeps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">radar</span><span class="o">.</span><span class="n">nsweeps</span><span class="p">)</span>
+
     <span class="k">for</span> <span class="n">sweep</span> <span class="ow">in</span> <span class="n">target_sweeps</span><span class="p">:</span>
         <span class="n">radar_sw</span> <span class="o">=</span> <span class="n">radar</span><span class="o">.</span><span class="n">extract_sweeps</span><span class="p">([</span><span class="n">sweep</span><span class="p">])</span>
         <span class="k">if</span> <span class="p">(</span>
@@ -1623,8 +1619,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -1657,7 +1653,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>

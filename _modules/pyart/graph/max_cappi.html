@@ -15,19 +15,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "light";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -38,10 +40,11 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/pyart-theme.css?v=40b48845" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=9764bf3a"></script>
     <script src="../../../_static/doctools.js?v=888ff710"></script>
@@ -49,7 +52,6 @@
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-JJEG3CV376"></script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -62,7 +64,8 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="en"/> 
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.8" /> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -85,19 +88,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -105,7 +97,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search the docs ..."
          aria-label="Search the docs ..."
          autocomplete="off"
@@ -113,8 +104,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -192,7 +183,9 @@
 </li>
 
             <li class="nav-item dropdown">
-                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
                     More
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
@@ -224,29 +217,21 @@
         <div class="navbar-item navbar-persistent--container">
           
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
         </div>
       
       
         <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
       
         <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -283,15 +268,11 @@ document.write(`
   
     <div class="navbar-persistent--mobile">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
     </div>
   
 
@@ -308,7 +289,8 @@ document.write(`
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
         
 
   
@@ -383,15 +365,11 @@ document.write(`
         
           <div class="navbar-item">
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script></div>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
         
           <div class="navbar-item"><ul class="navbar-icon-links"
     aria-label="Icon Links">
@@ -427,9 +405,14 @@ document.write(`
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -447,8 +430,6 @@ document.write(`
       
         <div class="header-article-item">
 
-
-
 <nav aria-label="Breadcrumb" class="d-print-none">
   <ul class="bd-breadcrumbs">
     
@@ -460,7 +441,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">pyart.graph....</li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">pyart.graph.max_cappi</span></li>
   </ul>
 </nav>
 </div>
@@ -489,20 +470,20 @@ document.write(`
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;plot_maxcappi&quot;</span><span class="p">]</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
-<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">feat</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">cartopy.mpl.gridliner</span> <span class="kn">import</span> <span class="n">LATITUDE_FORMATTER</span><span class="p">,</span> <span class="n">LONGITUDE_FORMATTER</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">NullFormatter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">feat</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">cartopy.mpl.gridliner</span><span class="w"> </span><span class="kn">import</span> <span class="n">LATITUDE_FORMATTER</span><span class="p">,</span> <span class="n">LONGITUDE_FORMATTER</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">NullFormatter</span>
 
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="plot_maxcappi"><a class="viewcode-back" href="../../../API/generated/pyart.graph.plot_maxcappi.html#pyart.graph.plot_maxcappi">[docs]</a><span class="k">def</span> <span class="nf">plot_maxcappi</span><span class="p">(</span>
+<div class="viewcode-block" id="plot_maxcappi"><a class="viewcode-back" href="../../../API/generated/pyart.graph.plot_maxcappi.html#pyart.graph.plot_maxcappi">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">plot_maxcappi</span><span class="p">(</span>
     <span class="n">grid</span><span class="p">,</span>
     <span class="n">field</span><span class="p">,</span>
     <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -522,7 +503,7 @@ document.write(`
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Plots a Constant Altitude Plan Position Indicator (CAPPI) using an xarray Dataset.</span>
+<span class="sd">    Plot a Maximum Constant Altitude Plan Position Indicator (Max-CAPPI) using an xarray Dataset.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -531,11 +512,11 @@ document.write(`
 <span class="sd">    field : str</span>
 <span class="sd">        The radar field to be plotted (e.g., &quot;REF&quot;, &quot;VEL&quot;, &quot;WIDTH&quot;).</span>
 <span class="sd">    cmap : str or matplotlib colormap, optional</span>
-<span class="sd">        Colormap to use for the plot. Default is &quot;SyedSpectral&quot; if available, otherwise &quot;HomeyerRainbow&quot;.</span>
+<span class="sd">        Colormap to use for the plot. Default is &quot;HomeyerRainbow&quot;.</span>
 <span class="sd">    vmin : float, optional</span>
-<span class="sd">        Minimum value for the color scaling. Default is None, which sets it to the minimum value of the data.</span>
+<span class="sd">        Minimum value for the color scaling. Default is set to the minimum value of the data if not provided.</span>
 <span class="sd">    vmax : float, optional</span>
-<span class="sd">        Maximum value for the color scaling. Default is None, which sets it to the maximum value of the data.</span>
+<span class="sd">        Maximum value for the color scaling. Default is set to the maximum value of the data if not provided.</span>
 <span class="sd">    title : str, optional</span>
 <span class="sd">        Title of the plot. If None, the title is set to &quot;Max-{field}&quot;.</span>
 <span class="sd">    lat_lines : array-like, optional</span>
@@ -545,28 +526,36 @@ document.write(`
 <span class="sd">    add_map : bool, optional</span>
 <span class="sd">        Whether to include a map background in the plot. Default is True.</span>
 <span class="sd">    projection : cartopy.crs.Projection, optional</span>
-<span class="sd">        The map projection for the plot. Default is cartopy.crs.LambertAzimuthalEqualArea().</span>
+<span class="sd">        The map projection for the plot. Default is automatically determined based on dataset coordinates.</span>
 <span class="sd">    colorbar : bool, optional</span>
 <span class="sd">        Whether to include a colorbar in the plot. Default is True.</span>
 <span class="sd">    range_rings : bool, optional</span>
-<span class="sd">        Whether to include range rings at 50 km intervals. Default is True.</span>
+<span class="sd">        Whether to include range rings at 50 km intervals. Default is False.</span>
 <span class="sd">    dpi : int, optional</span>
 <span class="sd">        DPI (dots per inch) for the plot. Default is 100.</span>
 <span class="sd">    savedir : str, optional</span>
 <span class="sd">        Directory where the plot will be saved. If None, the plot is not saved.</span>
 <span class="sd">    show_figure : bool, optional</span>
 <span class="sd">        Whether to display the plot. Default is True.</span>
+<span class="sd">    add_slogan : bool, optional</span>
+<span class="sd">        Whether to add a slogan like &quot;Powered by Py-ART&quot; to the plot. Default is False.</span>
 <span class="sd">    **kwargs : dict, optional</span>
 <span class="sd">        Additional keyword arguments to pass to matplotlib&#39;s `pcolormesh` function.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    None</span>
-<span class="sd">        This function does not return any value. It generates and optionally displays/saves a plot.</span>
+<span class="sd">        This function does not return any value. It generates and optionally displays or saves a plot.</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Author : Hamid Ali Syed (@syedhamidali)</span>
+<span class="sd">    - The function extracts the maximum value across the altitude (z) dimension to create the Max-CAPPI.</span>
+<span class="sd">    - It supports customizations such as map projections, color scales, and range rings.</span>
+<span class="sd">    - If the radar_name attribute in the dataset is a byte string, it will be decoded and limited to 4 characters.</span>
+<span class="sd">    - If add_map is True, map features and latitude/longitude lines are included.</span>
+<span class="sd">    - The plot can be saved to a specified directory in PNG format.</span>
+
+<span class="sd">    Author: Syed Hamid Ali (@syedhamidali)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">ds</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span>
@@ -606,7 +595,7 @@ document.write(`
     <span class="n">sideticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">max_height</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">max_height</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_height</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;pyart_Carbone42&quot;</span>
+        <span class="n">cmap</span> <span class="o">=</span> <span class="s2">&quot;HomeyerRainbow&quot;</span>
     <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">vmin</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fields</span><span class="p">[</span><span class="n">field</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -614,7 +603,7 @@ document.write(`
     <span class="k">if</span> <span class="n">title</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Max-</span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">upper</span><span class="p">()[:</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 
-    <span class="k">def</span> <span class="nf">plot_range_rings</span><span class="p">(</span><span class="n">ax_xy</span><span class="p">,</span> <span class="n">max_range</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot_range_rings</span><span class="p">(</span><span class="n">ax_xy</span><span class="p">,</span> <span class="n">max_range</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Plots range rings at 50 km intervals.</span>
 
@@ -646,7 +635,7 @@ document.write(`
 
         <span class="n">ax_xy</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">prop</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="s2">&quot;normal&quot;</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
 
-    <span class="k">def</span> <span class="nf">_get_projection</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_projection</span><span class="p">(</span><span class="n">ds</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Determine the central latitude and longitude from a dataset</span>
 <span class="sd">        and return the corresponding projection.</span>
@@ -664,7 +653,7 @@ document.write(`
 <span class="sd">            calculated latitude and longitude.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">def</span> <span class="nf">get_coord_or_attr</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">coord_name</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_coord_or_attr</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">coord_name</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&quot;&quot;&quot;Helper function to get a coordinate or attribute, or</span>
 <span class="sd">            calculate median if available.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
@@ -763,14 +752,32 @@ document.write(`
         <span class="n">labelbottom</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Retrieve instrument name</span>
-    <span class="n">instrument_name</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instrument_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span>
+    <span class="c1"># Initialize an empty list to store the processed radar names</span>
+    <span class="n">full_title</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Check if radar_name is a list (or list-like) or a simple string</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;radar_name&quot;</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="c1"># Iterate over each radar name in the list</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;radar_name&quot;</span><span class="p">]:</span>
+            <span class="c1"># Decode if it&#39;s a byte string and take the first 4 characters</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">):</span>
+                <span class="n">site_title</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)[:</span><span class="mi">4</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">site_title</span> <span class="o">=</span> <span class="n">name</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+            <span class="n">full_title</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">site_title</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Handle the case where radar_name is a single string</span>
+        <span class="n">site_title</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;radar_name&quot;</span><span class="p">][:</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">full_title</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">site_title</span><span class="p">)</span>
+
+    <span class="c1"># Join the processed radar names into a single string with commas separating them</span>
+    <span class="n">formatted_title</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">full_title</span><span class="p">)</span>
 
     <span class="c1"># Center-align text in the corner box</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
         <span class="mf">0.5</span><span class="p">,</span>
         <span class="mf">0.90</span><span class="p">,</span>
-        <span class="sa">f</span><span class="s2">&quot;Site: </span><span class="si">{</span><span class="n">instrument_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">formatted_title</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="n">size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
         <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
         <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span>
@@ -838,7 +845,7 @@ document.write(`
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
 
 
-<span class="k">def</span> <span class="nf">map_features</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lat_lines</span><span class="p">,</span> <span class="n">lon_lines</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">map_features</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lat_lines</span><span class="p">,</span> <span class="n">lon_lines</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Adds map features and gridlines to the plot.</span>
 
@@ -905,7 +912,7 @@ document.write(`
         <span class="c1"># Label the end-points of the gridlines using custom tick makers</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LONGITUDE_FORMATTER</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LATITUDE_FORMATTER</span><span class="p">)</span>
-        <span class="kn">from</span> <span class="nn">pyart.graph.gridmapdisplay</span> <span class="kn">import</span> <span class="n">lambert_xticks</span><span class="p">,</span> <span class="n">lambert_yticks</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pyart.graph.gridmapdisplay</span><span class="w"> </span><span class="kn">import</span> <span class="n">lambert_xticks</span><span class="p">,</span> <span class="n">lambert_yticks</span>
 
         <span class="n">lambert_xticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lon_lines</span><span class="p">)</span>
         <span class="n">lambert_yticks</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">lat_lines</span><span class="p">)</span>
@@ -943,8 +950,8 @@ document.write(`
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
 <div class="bd-footer__inner bd-page-width">
@@ -977,7 +984,8 @@ document.write(`
       
         <div class="footer-item">
 <p class="theme-version">
-  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
 </p></div>
       
     </div>
