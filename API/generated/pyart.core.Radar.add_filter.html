@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -1161,7 +1161,7 @@
 <h1>pyart.core.Radar.add_filter<a class="headerlink" href="#pyart-core-radar-add-filter" title="Permalink to this heading">#</a></h1>
 <dl class="py method">
 <dt class="sig sig-object py" id="pyart.core.Radar.add_filter">
-<span class="sig-prename descclassname"><span class="pre">Radar.</span></span><span class="sig-name descname"><span class="pre">add_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gatefilter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_existing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/pyart/core/radar.html#Radar.add_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyart.core.Radar.add_filter" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Radar.</span></span><span class="sig-name descname"><span class="pre">add_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gatefilter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_existing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_fields</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyart.core.Radar.add_filter" title="Permalink to this definition">#</a></dt>
 <dd><p>Updates the radar object with an applied gatefilter provided
 by the user that masks values in fields within the radar object.</p>
 <dl class="field-list simple">
@@ -1172,9 +1172,9 @@ the conditions provided in the gatefilter and mask values
 in fields specified or all fields if include_fields is None.</p></li>
 <li><p><strong>replace_existing</strong> (<em>bool, optional</em>) – If True, replaces the fields in the radar object with
 copies of those fields with the applied gatefilter.
-False will return new fields with the appended ‘<a href="#id1"><span class="problematic" id="id2">filtered_</span></a>’
+False will return new fields with the appended “filtered”
 prefix.</p></li>
-<li><p><strong>include_fields</strong> (<em>list, optional</em>) – List of fields to have filtered applied to. If none, all
+<li><p><strong>include_fields</strong> (<em>list, optional</em>) – List of fields to have filter applied to. If none, all
 fields will have applied filter.</p></li>
 </ul>
 </dd>

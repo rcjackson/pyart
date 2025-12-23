@@ -1,7 +1,7 @@
 """
-=============
+==============
 Plot Max-CAPPI
-=============
+==============
 
 This is an example of how to plot a Max-CAPPI
 within a Py-ART grid display object.
@@ -20,8 +20,8 @@ import pyart
 from pyart.testing import get_test_data
 
 #########################################
-# ** MAX-CAPPI Display
-#
+# MAX-CAPPI Display
+# -----------------
 
 # Define and Read in the test data
 grid_file = get_test_data("20110520100000_nexrad_grid.nc")
@@ -34,7 +34,8 @@ gdisplay.plot_maxcappi(field="REF", range_rings=True, add_slogan=True)
 
 
 #########################################
-# ** Second Example
+# Second Example
+# --------------
 #
 # Let's read in a Nexrad data and create a grid.
 
@@ -58,7 +59,7 @@ def download_nexrad(timezone, date, site, local_date=False):
 
         fs = fsspec.filesystem("s3", anon=True)
         nexrad_path = utc_date.strftime(
-            f"s3://noaa-nexrad-level2/%Y/%m/%d/{site}/{site}%Y%m%d_%H*"
+            f"s3://unidata-nexrad-level2/%Y/%m/%d/{site}/{site}%Y%m%d_%H*"
         )
         files = sorted(fs.glob(nexrad_path))
 

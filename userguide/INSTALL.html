@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Building and installing Py-ART &#8212; Py-ART 1.8.0 documentation</title>
+    <title>Installation &#8212; Py-ART 1.8.0 documentation</title>
   
   
   
@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -416,8 +416,9 @@
      aria-label="Section Navigation">
   <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
   <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Why Py-ART?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pyart_2_0.html">Py-ART 2.0</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Building and installing Py-ART</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setting_up_an_environment.html">Setting up an Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributors_guide.html">Contributor’s Guide</a></li>
 </ul>
@@ -463,7 +464,7 @@
     
     <li class="breadcrumb-item"><a href="index.html" class="nav-link">User Guide</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Building and installing Py-ART</span></li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Installation</span></li>
   </ul>
 </nav>
 </div>
@@ -479,8 +480,8 @@
                 
 <div id="searchbox"></div>
                 <article class="bd-article">
-                   <section id="building-and-installing-py-art">
-<h1>Building and installing Py-ART<a class="headerlink" href="#building-and-installing-py-art" title="Permalink to this heading">#</a></h1>
+                   <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h1>
 <section id="required-dependencies">
 <h2>Required Dependencies<a class="headerlink" href="#required-dependencies" title="Permalink to this heading">#</a></h2>
 <p>Py-ART requires the following software.</p>
@@ -502,6 +503,39 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/">Xarray</a></p></li>
 </ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/pooch/">pooch</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cython.readthedocs.io/en/latest/">Cython</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://setuptools.pypa.io/en/latest/index.html">setuptools</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/">cartopy</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cmweather.readthedocs.io/en/latest/">cmweather</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.openradarscience.org/projects/xradar/en/stable/">xradar</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/">xarray</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MDAnalysis/mda-xdrlib">mda-xdrlib</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://filesystem-spec.readthedocs.io/en/latest/">fsspec</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://s3fs.readthedocs.io/en/latest/">s3fs</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/">pandas</a></p></li>
+</ul>
 </section>
 <section id="optional-dependencies">
 <h2>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this heading">#</a></h2>
@@ -516,10 +550,24 @@ without these packages.</p>
 <li><p><a class="reference external" href="https://scitools.org.uk/cartopy/docs/latest/">Cartopy</a> or</p></li>
 <li><p><a class="reference external" href="https://matplotlib.org/basemap/">Basemap</a> But Cartopy is recommended as
 basemap will no longer have support.</p></li>
-<li><p><a class="reference external" href="https://docs.xarray.dev/en/stable/">xarray</a></p></li>
 <li><p><a class="reference external" href="https://github.com/pyproj4/pyproj">pyproj</a></p></li>
 <li><p><a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a></p></li>
+<li><p><a class="reference external" href="https://unidata.github.io/MetPy/latest/">metpy</a></p></li>
 </ul>
+</section>
+<section id="instructions-for-installing">
+<h2>Instructions for Installing<a class="headerlink" href="#instructions-for-installing" title="Permalink to this heading">#</a></h2>
+<p>You can install using pip, conda, or pixi! We recommend using pixi, using the instructions below</p>
+<ol class="arabic simple">
+<li><p>Install pixi if you have not done so already <a class="reference external" href="https://pixi.sh/latest/installation/">https://pixi.sh/latest/installation/</a></p></li>
+<li><p>Create a Py-ART environment using the following commands</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pixi init pyart_dev
+$ cd pyart_dev
+$ pixi add arm_pyart
+</pre></div>
+</div>
+<p>This will build your environment and install all the required dependencies!</p>
 </section>
 <section id="obtaining-the-latest-source">
 <h2>Obtaining the latest source<a class="headerlink" href="#obtaining-the-latest-source" title="Permalink to this heading">#</a></h2>
@@ -661,6 +709,7 @@ To get basemap working, but again Cartopy should be used instead of Basemap.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-dependencies">Required Dependencies</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-dependencies">Optional Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions-for-installing">Instructions for Installing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-the-latest-source">Obtaining the latest source</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-from-source">Installing from Source</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequently-asked-questions">Frequently asked questions</a></li>

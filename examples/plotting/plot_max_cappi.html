@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -419,10 +419,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_cloud_mask.html">Calculating and Plotting a Cloud Mask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_attenuation.html">Correct reflectivity attenuation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_dealias.html">Dealias doppler velocities using the Region Based Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../correct/plot_dealias_rhi.html">Dealias doppler velocities for an RHI file</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../io/index.html">Input/Output Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../io/plot_read_cfradial2.html">Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../io/plot_nexrad_data_google_cloud.html">Reading NEXRAD Data from Google Cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../io/plot_older_nexrad_data_aws.html">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../io/plot_nexrad_data_aws.html">Reading NEXRAD Data from the AWS Cloud</a></li>
 </ul>
@@ -558,7 +560,8 @@ within a Py-ART grid display object.</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pyart.testing</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_test_data</span>
 </pre></div>
 </div>
-<p>** MAX-CAPPI Display</p>
+<section id="max-cappi-display">
+<h2>MAX-CAPPI Display<a class="headerlink" href="#max-cappi-display" title="Permalink to this heading">#</a></h2>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define and Read in the test data</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid_file</span></a> <span class="o">=</span> <span class="n">get_test_data</span><span class="p">(</span><span class="s2">&quot;20110520100000_nexrad_grid.nc&quot;</span><span class="p">)</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pyart</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_grid</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">grid_file</span></a><span class="p">)</span>
@@ -569,7 +572,9 @@ within a Py-ART grid display object.</p>
 <span class="n">gdisplay</span><span class="o">.</span><span class="n">plot_maxcappi</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="s2">&quot;REF&quot;</span><span class="p">,</span> <span class="n">range_rings</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">add_slogan</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_max_cappi_001.png" srcset="../../_images/sphx_glr_plot_max_cappi_001.png" alt="plot max cappi" class = "sphx-glr-single-img"/><p>** Second Example</p>
+<img src="../../_images/sphx_glr_plot_max_cappi_001.png" srcset="../../_images/sphx_glr_plot_max_cappi_001.png" alt="plot max cappi" class = "sphx-glr-single-img"/></section>
+<section id="second-example">
+<h2>Second Example<a class="headerlink" href="#second-example" title="Permalink to this heading">#</a></h2>
 <p>Let’s read in a Nexrad data and create a grid.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="datetime.datetime" class="sphx-glr-backref-module-datetime sphx-glr-backref-type-py-class"><span class="n">datetime</span></a>
@@ -590,7 +595,7 @@ within a Py-ART grid display object.</p>
 
         <span class="n">fs</span> <span class="o">=</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">filesystem</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="n">anon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">nexrad_path</span> <span class="o">=</span> <span class="n">utc_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;s3://noaa-nexrad-level2/%Y/%m/%d/</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">site</span></a><span class="si">}</span><span class="s2">/</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">site</span></a><span class="si">}</span><span class="s2">%Y%m%d_%H*&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;s3://unidata-nexrad-level2/%Y/%m/%d/</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">site</span></a><span class="si">}</span><span class="s2">/</span><span class="si">{</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">site</span></a><span class="si">}</span><span class="s2">%Y%m%d_%H*&quot;</span>
         <span class="p">)</span>
         <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fs</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">nexrad_path</span><span class="p">))</span>
 
@@ -646,7 +651,7 @@ WARNING:matplotlib.font_manager:findfont: Font family &#39;Courier New&#39; not 
 WARNING:matplotlib.font_manager:findfont: Font family &#39;Courier New&#39; not found.
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 14.679 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 11.991 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-plotting-plot-max-cappi-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/8eaf8ca0ba6238acf1f7b2e6a865219c/plot_max_cappi.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_max_cappi.ipynb</span></code></a></p>
@@ -659,6 +664,7 @@ WARNING:matplotlib.font_manager:findfont: Font family &#39;Courier New&#39; not 
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
 </section>
 
 <div class="section ablog__blog_comments">
@@ -702,6 +708,19 @@ WARNING:matplotlib.font_manager:findfont: Font family &#39;Courier New&#39; not 
                 <dialog id="pst-secondary-sidebar-modal"></dialog>
                 <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#max-cappi-display">MAX-CAPPI Display</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-example">Second Example</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
   <div role="note" aria-label="source link">

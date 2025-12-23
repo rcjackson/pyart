@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART" href="plot_read_cfradial2.html" />
-    <link rel="prev" title="Dealias doppler velocities using the Region Based Algorithm" href="../correct/plot_dealias.html" /> 
+    <link rel="prev" title="Dealias doppler velocities for an RHI file" href="../correct/plot_dealias_rhi.html" /> 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.8" /> 
@@ -419,10 +419,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_cloud_mask.html">Calculating and Plotting a Cloud Mask</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_attenuation.html">Correct reflectivity attenuation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../correct/plot_dealias.html">Dealias doppler velocities using the Region Based Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../correct/plot_dealias_rhi.html">Dealias doppler velocities for an RHI file</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Input/Output Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="plot_read_cfradial2.html">Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plot_nexrad_data_google_cloud.html">Reading NEXRAD Data from Google Cloud</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_older_nexrad_data_aws.html">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_nexrad_data_aws.html">Reading NEXRAD Data from the AWS Cloud</a></li>
 </ul>
@@ -538,13 +540,16 @@
 <span id="io"></span><span id="sphx-glr-examples-io"></span><h1>Input/Output Examples<a class="headerlink" href="#input-output-examples" title="Permalink to this heading">#</a></h1>
 <p>Reading/writing a variety of radar data using Py-ART.</p>
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="An example which uses xradar and Py-ART to read and plot Cfradial2/FM301 data."><img alt="" src="../../_images/sphx_glr_plot_read_cfradial2_thumb.png" />
-<p><a class="reference internal" href="plot_read_cfradial2.html#sphx-glr-examples-io-plot-read-cfradial2-py"><span class="std std-ref">Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART</span></a></p>
+<p><a class="reference internal" href="plot_read_cfradial2.html"><span class="doc">Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART</span></a></p>
   <div class="sphx-glr-thumbnail-title">Read and Plot Cfradial2/FM301 data Using Xradar and Py-ART</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Within this example, we show how you can remotely access Next Generation Weather Radar (NEXRAD) Data from Google Cloud Storage and plot quick looks of the datasets."><img alt="" src="../../_images/sphx_glr_plot_nexrad_data_google_cloud_thumb.png" />
+<p><a class="reference internal" href="plot_nexrad_data_google_cloud.html"><span class="doc">Reading NEXRAD Data from Google Cloud</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Reading NEXRAD Data from Google Cloud</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="In this example, we will show how to read in older NEXRAD files prior to 2008 that are missing some coordinate metadata."><img alt="" src="../../_images/sphx_glr_plot_older_nexrad_data_aws_thumb.png" />
-<p><a class="reference internal" href="plot_older_nexrad_data_aws.html#sphx-glr-examples-io-plot-older-nexrad-data-aws-py"><span class="std std-ref">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</span></a></p>
+<p><a class="reference internal" href="plot_older_nexrad_data_aws.html"><span class="doc">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</span></a></p>
   <div class="sphx-glr-thumbnail-title">Reading Older NEXRAD Data and Fixing Latitude and Longitude Issues</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Within this example, we show how you can remotely access Next Generation Weather Radar (NEXRAD) Data from Amazon Web Services and plot quick looks of the datasets."><img alt="" src="../../_images/sphx_glr_plot_nexrad_data_aws_thumb.png" />
-<p><a class="reference internal" href="plot_nexrad_data_aws.html#sphx-glr-examples-io-plot-nexrad-data-aws-py"><span class="std std-ref">Reading NEXRAD Data from the AWS Cloud</span></a></p>
+<p><a class="reference internal" href="plot_nexrad_data_aws.html"><span class="doc">Reading NEXRAD Data from the AWS Cloud</span></a></p>
   <div class="sphx-glr-thumbnail-title">Reading NEXRAD Data from the AWS Cloud</div>
 </div></div><div class="toctree-wrapper compound">
 </div>
@@ -564,12 +569,12 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../correct/plot_dealias.html"
+       href="../correct/plot_dealias_rhi.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Dealias doppler velocities using the Region Based Algorithm</p>
+        <p class="prev-next-title">Dealias doppler velocities for an RHI file</p>
       </div>
     </a>
     <a class="right-next"
